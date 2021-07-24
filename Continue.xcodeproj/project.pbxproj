@@ -20,6 +20,7 @@
 		491D917A26A7137000E669DF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D917926A7137000E669DF /* CardView.swift */; };
 		491D917C26A7162300E669DF /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D917B26A7162300E669DF /* TopBar.swift */; };
 		491D917E26A7176F00E669DF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D917D26A7176F00E669DF /* UIView.swift */; };
+		49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49218F6926ABFAC3004BDDD4 /* ChartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		491D917926A7137000E669DF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		491D917B26A7162300E669DF /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
 		491D917D26A7176F00E669DF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		49218F6926ABFAC3004BDDD4 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				491D914426A70D6A00E669DF /* SceneDelegate.swift */,
 				491D914626A70D6A00E669DF /* ViewController.swift */,
 				491D917726A7130E00E669DF /* BoardViewController.swift */,
+				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
 				491D917B26A7162300E669DF /* TopBar.swift */,
 				491D917926A7137000E669DF /* CardView.swift */,
 				491D917526A7116400E669DF /* Color.swift */,
@@ -275,6 +278,7 @@
 				491D917A26A7137000E669DF /* CardView.swift in Sources */,
 				491D914726A70D6A00E669DF /* ViewController.swift in Sources */,
 				491D914326A70D6A00E669DF /* AppDelegate.swift in Sources */,
+				49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */,
 				491D914D26A70D6A00E669DF /* Continue.xcdatamodeld in Sources */,
 				491D917626A7116400E669DF /* Color.swift in Sources */,
 				491D914526A70D6A00E669DF /* SceneDelegate.swift in Sources */,

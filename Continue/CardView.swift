@@ -9,12 +9,13 @@ import UIKit
 
 class CardView: UIView {
 
-    init(size: CGSize) {
-        super.init(frame: CGRect(origin: CGPoint.zero, size: size))
+    init() {
+        super.init(frame: .zero)
         
-        self.backgroundColor = UIColor.back
+        self.backgroundColor = .back
         self.layer.cornerRadius = 20
-        
+        self.translatesAutoresizingMaskIntoConstraints = false
+
         addShadow()
     }
     

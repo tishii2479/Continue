@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         
         setBackgroundColor()
         setTopBar()
+        setNavigationBar()
         
         setLayout()
     }
@@ -36,6 +37,10 @@ class ViewController: UIViewController {
         let topBar = TopBar()
         
         self.view.addSubview(topBar)
+    }
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.barTintColor = UIColor.back
     }
     
     func setLayout() {}

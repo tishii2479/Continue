@@ -11,7 +11,13 @@ class ChartView: CardView {
 
     override init() {
         super.init()
-        
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func layoutSubviews() {
         let text = UILabel()
         text.text = "Hello world!"
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -24,10 +30,6 @@ class ChartView: CardView {
             text.topAnchor.constraint(equalTo: self.topAnchor),
             text.heightAnchor.constraint(equalToConstant: 50),
         ])
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
     }
     
 }

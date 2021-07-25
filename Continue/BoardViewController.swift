@@ -17,7 +17,6 @@ class BoardViewController: ViewController {
     
     override func setNavigationBar() {
         super.setNavigationBar()
-        
     }
     
     override func setLayout() {
@@ -26,10 +25,9 @@ class BoardViewController: ViewController {
         self.view.addSubview(scrollView)
         
         let chartView = ChartView()
+        let tableView = TableView()
         
-        let cardView = CardView()
-        
-        let stackView = UIStackView(arrangedSubviews: [chartView, cardView])
+        let stackView = UIStackView(arrangedSubviews: [chartView, tableView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -55,8 +53,8 @@ class BoardViewController: ViewController {
             chartView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
             chartView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
             chartView.heightAnchor.constraint(equalToConstant: 200),
-            cardView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
-            cardView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
         ])
         
     }

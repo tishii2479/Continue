@@ -11,7 +11,6 @@ class CardView: UIView {
 
     init() {
         super.init(frame: .zero)
-        
         self.backgroundColor = .back
         self.layer.cornerRadius = 20
         self.translatesAutoresizingMaskIntoConstraints = false

@@ -12,13 +12,7 @@ class MenuContent: UIView {
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 250, height: UIScreen.main.bounds.height))
         self.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    override func layoutSubviews() {
+        
         self.backgroundColor = UIColor.back
         self.addShadow()
         
@@ -43,8 +37,12 @@ class MenuContent: UIView {
         }
         
         let spacing = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
-        spacing.backgroundColor = UIColor.red
+        spacing.backgroundColor = UIColor.clear
         stackView.addArrangedSubview(spacing)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
 }

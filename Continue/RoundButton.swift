@@ -9,19 +9,18 @@ import UIKit
 
 class RoundButton: UIButton {
 
-    init() {
+    init(cornerRadius: CGFloat = 25) {
         super.init(frame: .zero)
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setTitle("記録する", for: .normal)
+        self.backgroundColor = UIColor.back
+        self.layer.cornerRadius = cornerRadius
+        self.addShadow()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    override func layoutSubviews() {
-        self.setTitle("記録する", for: .normal)
-        self.backgroundColor = UIColor.back
-        self.layer.cornerRadius = 25
-        self.addShadow()
-    }
-
 }

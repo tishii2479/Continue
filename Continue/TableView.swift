@@ -9,31 +9,38 @@ import UIKit
 
 class TableCell: UITableViewCell {
     
+    let stackView = UIStackView()
+    let dateText = UILabel()
+    let recordText = UILabel()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.contentView.backgroundColor = .clear
+        self.backgroundColor = .clear
+        
+        self.stackView.frame = self.bounds
+        self.stackView.axis = .horizontal
+        self.stackView.alignment = .center
+        self.stackView.distribution = .equalSpacing
+        
+        self.addSubview(self.stackView)
+        self.stackView.addArrangedSubview(self.dateText)
+        self.stackView.addArrangedSubview(self.recordText)
+        
+        NSLayoutConstraint.activate([
+            self.dateText.widthAnchor.constraint(equalToConstant: 100),
+            self.recordText.widthAnchor.constraint(equalToConstant: 100),
+        ])
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    override func layoutSubviews() {
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
-        
-        let stackView = UIStackView(frame: self.bounds)
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        self.addSubview(stackView)
-        
-        let dateText = UILabel()
-        dateText.text = "2021/07/12"
-        let recordText = UILabel()
-        recordText.text = "101回"
-        
-        stackView.addArrangedSubview(dateText)
-        stackView.addArrangedSubview(recordText)
+    func setup(data: Record<Int>) {
+        dateText.text = data.formatDate()
+        recordText.text = String(data.record)
     }
     
 }
@@ -42,9 +49,7 @@ class TableView: CardView {
 
     override init() {
         super.init()
-    }
-    
-    override func layoutSubviews() {
+        
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,6 +69,7 @@ class TableView: CardView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
 }
 
 extension TableView: UITableViewDelegate {
@@ -78,7 +84,7 @@ extension TableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = String(indexPath.hashValue)
+        cell.setup(data: Record<Int>(date: Date(), record: 100))
         
         return cell
     }

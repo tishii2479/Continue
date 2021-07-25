@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setBackgroundColor()
-        setTopBar()
         setNavigationBar()
         
         setLayout()
@@ -32,12 +31,6 @@ class ViewController: UIViewController {
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    private func setTopBar() {
-        let topBar = TopBar()
-        
-        self.view.addSubview(topBar)
     }
     
     func setNavigationBar() {

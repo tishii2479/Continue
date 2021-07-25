@@ -25,13 +25,13 @@ class MenuContent: UIView {
         
         self.addSubview(stackView)
         
-        let titleLabel = UILabel()
+        let titleLabel = TextLabel()
         titleLabel.text = "一覧"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         stackView.addArrangedSubview(titleLabel)
         
         for _ in 0 ..< 4 {
-            let label = UILabel()
+            let label = TextLabel()
             label.text = "ランニング"
             stackView.addArrangedSubview(label)
         }

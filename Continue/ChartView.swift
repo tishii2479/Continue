@@ -12,7 +12,7 @@ class ChartView: CardView {
     override init() {
         super.init()
         
-        let text = UILabel()
+        let text = TextLabel()
         text.text = "Hello world!"
         text.translatesAutoresizingMaskIntoConstraints = false
         

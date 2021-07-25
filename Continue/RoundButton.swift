@@ -9,11 +9,16 @@ import UIKit
 
 class RoundButton: UIButton {
 
-    init(cornerRadius: CGFloat = 25) {
+    init(title: String? = nil, cornerRadius: CGFloat = 25) {
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.setTitle("記録する", for: .normal)
+        
+        if let _title = title {
+            self.setTitle(_title, for: .normal)
+            self.setTitleColor(UIColor.pink, for: .normal)
+        }
+        
         self.backgroundColor = UIColor.back
         self.layer.cornerRadius = cornerRadius
         self.addShadow()

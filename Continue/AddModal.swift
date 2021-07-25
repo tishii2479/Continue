@@ -10,7 +10,7 @@ import UIKit
 class AddModal: UIView {
     
     let addForm = AddForm()
-    let addButton = RoundButton()
+    let addButton = RoundButton(title: "記録する")
     let closeButton = RoundButton()
     private var isSeen: Bool = false
 

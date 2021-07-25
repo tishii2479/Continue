@@ -10,8 +10,8 @@ import UIKit
 class TableCell: UITableViewCell {
     
     let stackView = UIStackView()
-    let dateText = UILabel()
-    let recordText = UILabel()
+    let dateText = TextLabel()
+    let recordText = TextLabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

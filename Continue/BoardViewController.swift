@@ -30,7 +30,7 @@ class BoardViewController: ViewController {
         
         let chartView = ChartView()
         let tableView = TableView()
-        let addButton = RoundButton()
+        let addButton = RoundButton(title: "記録する")
         
         addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
         

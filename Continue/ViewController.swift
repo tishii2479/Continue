@@ -36,6 +36,10 @@ class ViewController: UIViewController {
     func setNavigationBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor.back
         self.navigationItem.title = "新しい習慣"
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.text,
+            .font: UIFont.boldSystemFont(ofSize: 16)
+        ]
         let menuButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(fadeInMenu(_:)))
         self.navigationItem.leftBarButtonItem = menuButton
     }

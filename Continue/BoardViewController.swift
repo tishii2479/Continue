@@ -8,6 +8,8 @@
 import UIKit
 
 class BoardViewController: ViewController {
+    
+    let addModal = AddModal()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class BoardViewController: ViewController {
         let tableView = TableView()
         let addButton = RoundButton()
         
-        addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
+        addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [chartView, addButton, tableView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,10 +66,11 @@ class BoardViewController: ViewController {
             tableView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
         ])
         
+        self.navigationController?.view.addSubview(addModal)
     }
     
-    @objc func addButtonClicked(_ sender:UIButton) {
-        print("ボタンが押されたよ")
+    @objc func addButtonClicked(_ sender: UIButton) {
+        addModal.fadeIn()
     }
 
 }

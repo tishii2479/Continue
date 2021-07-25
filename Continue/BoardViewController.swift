@@ -20,6 +20,8 @@ class BoardViewController: ViewController {
     }
     
     override func setLayout() {
+        super.setLayout()
+        
         let scrollView = UIScrollView(frame: self.view.bounds)
 
         self.view.addSubview(scrollView)

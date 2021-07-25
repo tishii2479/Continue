@@ -8,10 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var sideMenu = SideMenu()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         setBackgroundColor()
         setTopBar()
@@ -41,9 +42,18 @@ class ViewController: UIViewController {
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor.back
+        self.navigationItem.title = "新しい習慣"
+        let menuButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(fadeInMenu(_:)))
+        self.navigationItem.leftBarButtonItem = menuButton
     }
     
-    func setLayout() {}
-
+    func setLayout() {
+        self.navigationController?.view.addSubview(sideMenu)
+    }
+    
+    @objc func fadeInMenu(_ sender: UIBarButtonItem) {
+        self.sideMenu.fadeIn()
+    }
+    
 }
 

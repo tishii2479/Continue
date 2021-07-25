@@ -23,6 +23,7 @@
 		49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49218F6926ABFAC3004BDDD4 /* ChartView.swift */; };
 		49218F6C26AC0107004BDDD4 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49218F6B26AC0107004BDDD4 /* TableView.swift */; };
 		49744ADA26AD4BE5008E7F81 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744AD926AD4BE5008E7F81 /* SideMenu.swift */; };
+		49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADB26AD5644008E7F81 /* RoundButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		49218F6926ABFAC3004BDDD4 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		49218F6B26AC0107004BDDD4 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		49744AD926AD4BE5008E7F81 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
+		49744ADB26AD5644008E7F81 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				491D914626A70D6A00E669DF /* ViewController.swift */,
 				49744AD926AD4BE5008E7F81 /* SideMenu.swift */,
 				491D917726A7130E00E669DF /* BoardViewController.swift */,
+				49744ADB26AD5644008E7F81 /* RoundButton.swift */,
 				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
 				49218F6B26AC0107004BDDD4 /* TableView.swift */,
 				491D917B26A7162300E669DF /* TopBar.swift */,
@@ -287,6 +290,7 @@
 				49744ADA26AD4BE5008E7F81 /* SideMenu.swift in Sources */,
 				49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */,
 				491D914D26A70D6A00E669DF /* Continue.xcdatamodeld in Sources */,
+				49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */,
 				491D917626A7116400E669DF /* Color.swift in Sources */,
 				491D914526A70D6A00E669DF /* SceneDelegate.swift in Sources */,
 				491D917826A7130E00E669DF /* BoardViewController.swift in Sources */,

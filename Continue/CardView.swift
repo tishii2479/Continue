@@ -15,7 +15,7 @@ class CardView: UIView {
         self.layer.cornerRadius = 20
         self.translatesAutoresizingMaskIntoConstraints = false
 
-        addShadow()
+        self.addShadow()
     }
     
     required init?(coder: NSCoder) {

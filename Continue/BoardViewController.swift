@@ -28,8 +28,11 @@ class BoardViewController: ViewController {
         
         let chartView = ChartView()
         let tableView = TableView()
+        let addButton = RoundButton()
         
-        let stackView = UIStackView(arrangedSubviews: [chartView, tableView])
+        addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
+        
+        let stackView = UIStackView(arrangedSubviews: [chartView, addButton, tableView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -55,10 +58,16 @@ class BoardViewController: ViewController {
             chartView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
             chartView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
             chartView.heightAnchor.constraint(equalToConstant: 200),
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+            addButton.widthAnchor.constraint(equalToConstant: 200),
             tableView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
             tableView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
         ])
         
+    }
+    
+    @objc func addButtonClicked(_ sender:UIButton) {
+        print("ボタンが押されたよ")
     }
 
 }

@@ -11,6 +11,7 @@ class AddForm: CardView {
     
     let titleLabel = TextLabel()
     let dateLabel = TextLabel()
+    let datePicker = UIDatePicker()
     let dateField = UITextField()
     let recordLabel = TextLabel()
     let recordField = UITextField()
@@ -44,12 +45,27 @@ class AddForm: CardView {
         recordField.textAlignment = .center
         recordField.textColor = UIColor.text
         recordField.font = UIFont.systemFont(ofSize: 32)
+        recordField.keyboardType = .numberPad
 
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(dateLabel)
         stackView.addArrangedSubview(dateField)
         stackView.addArrangedSubview(recordLabel)
         stackView.addArrangedSubview(recordField)
+
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.timeZone = NSTimeZone.local
+        datePicker.locale = Locale.current
+        datePicker.addTarget(self, action: #selector(changeDateValue), for: .valueChanged)
+        dateField.inputView = datePicker
+
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 35))
+        let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(changeDateValue))
+        toolbar.setItems([spacelItem, doneItem], animated: true)
+
+        dateField.inputView = datePicker
+        dateField.inputAccessoryView = toolbar
         
         NSLayoutConstraint.activate([
             stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
@@ -75,6 +91,12 @@ class AddForm: CardView {
         }
         
         RecordData.addData(date: Date(), record: _record)
+    }
+    
+    @objc func changeDateValue() {
+        dateField.endEditing(true)
+        
+        dateField.text = datePicker.date.toString(format: "yyyy/MM/dd E")
     }
 
 }

@@ -62,6 +62,7 @@ class TableView: CardView {
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.back
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),

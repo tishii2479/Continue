@@ -21,7 +21,7 @@ extension RecordData {
         
         recordArray.append(data)
         
-        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        self.save()
     }
     
     static func getArray() -> [RecordData] {
@@ -30,5 +30,21 @@ extension RecordData {
         
         return try! context?.fetch(fetchRequest) as! [RecordData]
     }
-
+    
+    static func clearArray() {
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        let recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
+        
+        for record in recordArray {
+            context?.delete(record)
+        }
+        
+        self.save()
+    }
+    
+    static func save() {
+        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+    
 }

@@ -57,7 +57,6 @@ class AddModal: UIView {
     }
     
     @objc func addButtonClicked(_ sender: UIButton) {
-        print("add")
         let record = addForm.getData()
         print(record)
     }

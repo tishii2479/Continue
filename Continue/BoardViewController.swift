@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class BoardViewController: ViewController {
     
@@ -24,12 +25,28 @@ class BoardViewController: ViewController {
     override func setLayout() {
         super.setLayout()
         
+        // Coredata
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        var recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
+//
+//        let record = RecordData(context: context!)
+//        record.record = 99
+//        record.date = Date()
+//        recordArray.append(record)
+//
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+//
+        print(recordArray)
+        
+        
         let scrollView = UIScrollView(frame: self.view.bounds)
+        scrollView.showsVerticalScrollIndicator = false
 
         self.view.addSubview(scrollView)
         
         let chartView = ChartView()
-        let tableView = TableView()
+        let tableView = TableView(_records: recordArray)
         let addButton = RoundButton(title: "記録する")
         
         addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)

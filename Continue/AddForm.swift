@@ -61,8 +61,8 @@ class AddForm: CardView {
         super.init(coder: coder)
     }
     
-    func getData() -> Record<Int> {
-        return Record<Int>(date: Date(), record: 100)
+    func getData() -> RecordData? {
+        return nil
     }
 
 }

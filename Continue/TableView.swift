@@ -38,17 +38,21 @@ class TableCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func setup(data: Record<Int>) {
-        dateText.text = data.formatDate()
+    func setup(data: RecordData) {
+        dateText.text = "11"
         recordText.text = String(data.record)
     }
     
 }
 
 class TableView: CardView {
+    
+    var records: [RecordData]!
 
-    override init() {
+    init(_records: [RecordData]) {
         super.init()
+        
+        records = _records
         
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,10 +61,11 @@ class TableView: CardView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.back
+        tableView.showsVerticalScrollIndicator = false
         
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
-            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
+            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ])
@@ -79,12 +84,12 @@ extension TableView: UITableViewDelegate {
 extension TableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return records.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableCell(style: .default, reuseIdentifier: "cell")
-        cell.setup(data: Record<Int>(date: Date(), record: 100))
+        cell.setup(data: records[indexPath.row])
         
         return cell
     }

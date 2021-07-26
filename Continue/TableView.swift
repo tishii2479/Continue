@@ -39,7 +39,7 @@ class TableCell: UITableViewCell {
     }
     
     func setup(data: RecordData) {
-        dateText.text = "11"
+        dateText.text = data.date?.toString(format: "MM/dd E")
         recordText.text = String(data.record)
     }
     
@@ -49,10 +49,10 @@ class TableView: CardView {
     
     var records: [RecordData]!
 
-    init(_records: [RecordData]) {
+    override init() {
         super.init()
         
-        records = _records
+        records = RecordData.getArray()
         
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ class TableView: CardView {
         tableView.showsVerticalScrollIndicator = false
         
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
             tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),

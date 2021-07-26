@@ -57,8 +57,7 @@ class AddModal: UIView {
     }
     
     @objc func addButtonClicked(_ sender: UIButton) {
-        let record = addForm.getData()
-        print(record)
+        addForm.addData()
     }
     
     func fadeIn() {

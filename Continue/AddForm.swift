@@ -33,11 +33,17 @@ class AddForm: CardView {
         
         dateField.backgroundColor = UIColor.lightGray
         dateField.layer.cornerRadius = 10
+        dateField.textAlignment = .center
+        dateField.textColor = UIColor.text
+        dateField.text = Date().toString(format: "yyyy/MM/dd E")
         
         recordLabel.text = "記録"
         
         recordField.backgroundColor = UIColor.lightGray
         recordField.layer.cornerRadius = 10
+        recordField.textAlignment = .center
+        recordField.textColor = UIColor.text
+        recordField.font = UIFont.systemFont(ofSize: 32)
 
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(dateLabel)
@@ -50,10 +56,10 @@ class AddForm: CardView {
             stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            dateField.widthAnchor.constraint(equalToConstant: 150),
-            dateField.heightAnchor.constraint(equalToConstant: 30),
-            recordField.widthAnchor.constraint(equalToConstant: 150),
-            recordField.heightAnchor.constraint(equalToConstant: 60),
+            dateField.widthAnchor.constraint(equalToConstant: 200),
+            dateField.heightAnchor.constraint(equalToConstant: 40),
+            recordField.widthAnchor.constraint(equalToConstant: 200),
+            recordField.heightAnchor.constraint(equalToConstant: 80),
         ])
     }
     
@@ -61,8 +67,14 @@ class AddForm: CardView {
         super.init(coder: coder)
     }
     
-    func getData() -> RecordData? {
-        return nil
+    func addData() {
+        let record: Int32? = Int32(recordField.text!)
+        guard let _record = record else {
+            print("Parse integer error")
+            return
+        }
+        
+        RecordData.addData(date: Date(), record: _record)
     }
 
 }

@@ -44,7 +44,7 @@ class AddForm: CardView {
         recordField.layer.cornerRadius = 10
         recordField.textAlignment = .center
         recordField.textColor = UIColor.text
-        recordField.font = UIFont.systemFont(ofSize: 32)
+        recordField.font = UIFont.systemFont(ofSize: 28)
         recordField.keyboardType = .numberPad
 
         stackView.addArrangedSubview(titleLabel)
@@ -75,7 +75,7 @@ class AddForm: CardView {
             dateField.widthAnchor.constraint(equalToConstant: 200),
             dateField.heightAnchor.constraint(equalToConstant: 40),
             recordField.widthAnchor.constraint(equalToConstant: 200),
-            recordField.heightAnchor.constraint(equalToConstant: 80),
+            recordField.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
     
@@ -83,14 +83,15 @@ class AddForm: CardView {
         super.init(coder: coder)
     }
     
-    func addData() {
+    func addData() -> String? {
         let record: Int32? = Int32(recordField.text!)
         guard let _record = record else {
-            print("Parse integer error")
-            return
+            return "PARSE_ERROR"
         }
         
-        RecordData.addData(date: Date(), record: _record)
+        RecordData.addData(date: datePicker.date, record: _record)
+    
+        return nil
     }
     
     @objc func changeDateValue() {

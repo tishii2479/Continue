@@ -8,37 +8,46 @@
 import UIKit
 import CoreData
 
-class BoardViewController: ViewController {
+class BoardViewController: ViewController, TableProtocol {
     
-    let addModal = AddModal()
+    let scrollView = UIScrollView()
+    let stackView = UIStackView()
+    lazy var addModal = AddModal(controller: self)
+    let chartView = ChartView()
+    let tableView = TableView()
+    let addButton = RoundButton(title: "記録する")
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        // RecordData.clearArray()
     }
     
     override func setNavigationBar() {
         super.setNavigationBar()
+        
+        let menuButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearTable(_:)))
+        self.navigationItem.rightBarButtonItem = menuButton
     }
     
     override func setLayout() {
         super.setLayout()
         
-        let scrollView = UIScrollView(frame: self.view.bounds)
+        scrollView.frame = self.view.bounds
         scrollView.showsVerticalScrollIndicator = false
 
         self.view.addSubview(scrollView)
         
-        let chartView = ChartView()
-        let tableView = TableView()
-        let addButton = RoundButton(title: "記録する")
-        
         addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
         
-        let stackView = UIStackView(arrangedSubviews: [chartView, addButton, tableView])
+        stackView.addArrangedSubview(chartView)
+        stackView.addArrangedSubview(addButton)
+        stackView.addArrangedSubview(tableView)
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -75,6 +84,15 @@ class BoardViewController: ViewController {
     
     @objc func addButtonClicked(_ sender: UIButton) {
         addModal.fadeIn()
+    }
+    
+    @objc func clearTable(_ sender: UIBarButtonItem) {
+        RecordData.clearArray()
+        reloadTable()
+    }
+    
+    func reloadTable() {
+        tableView.reloadTable()
     }
 
 }

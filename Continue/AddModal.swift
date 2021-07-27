@@ -9,13 +9,16 @@ import UIKit
 
 class AddModal: UIView {
     
+    unowned var tableController: TableProtocol?
     let addForm = AddForm()
     let addButton = RoundButton(title: "記録する")
     let closeButton = RoundButton()
     private var isSeen: Bool = false
 
-    init() {
+    init(controller: TableProtocol?) {
         super.init(frame: UIScreen.main.bounds)
+        
+        self.tableController = controller
         
         let mask = UIView(frame: UIScreen.main.bounds)
         mask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
@@ -57,7 +60,13 @@ class AddModal: UIView {
     }
     
     @objc func addButtonClicked(_ sender: UIButton) {
-        addForm.addData()
+        if let error = addForm.addData() {
+            showError(error: error)
+            return
+        }
+        
+        tableController?.reloadTable()
+        fadeOut()
     }
     
     func fadeIn() {
@@ -81,4 +90,9 @@ class AddModal: UIView {
             self.center.y += UIScreen.main.bounds.height
         })
     }
+    
+    private func showError(error: String) {
+        print(error)
+    }
+    
 }

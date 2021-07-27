@@ -47,6 +47,7 @@ class TableCell: UITableViewCell {
 
 class TableView: CardView {
     
+    let tableView = UITableView()
     var records: [RecordData]!
 
     override init() {
@@ -54,7 +55,6 @@ class TableView: CardView {
         
         records = RecordData.getArray()
         
-        let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(tableView)
@@ -74,6 +74,11 @@ class TableView: CardView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    func reloadTable() {
+        records = RecordData.getArray()
+        tableView.reloadData()
     }
     
 }

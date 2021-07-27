@@ -40,6 +40,7 @@ class ViewController: UIViewController {
             .foregroundColor: UIColor.text,
             .font: UIFont.boldSystemFont(ofSize: 16)
         ]
+        
         let menuButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(fadeInMenu(_:)))
         self.navigationItem.leftBarButtonItem = menuButton
     }

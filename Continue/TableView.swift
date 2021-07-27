@@ -12,25 +12,48 @@ class TableCell: UITableViewCell {
     let stackView = UIStackView()
     let dateText = TextLabel()
     let recordText = TextLabel()
-
+    let editButton = IconButton(systemName: "pencil")
+    let deleteButton = IconButton(systemName: "lasso")
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.contentView.backgroundColor = .clear
         self.backgroundColor = .clear
+        self.selectionStyle = .none
         
         self.stackView.frame = self.bounds
         self.stackView.axis = .horizontal
         self.stackView.alignment = .center
         self.stackView.distribution = .equalSpacing
         
-        self.addSubview(self.stackView)
+        self.dateText.font = UIFont.systemFont(ofSize: 12)
+        
+        self.contentView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.dateText)
         self.stackView.addArrangedSubview(self.recordText)
+        self.stackView.addArrangedSubview(self.editButton)
+        self.stackView.addArrangedSubview(self.deleteButton)
+        
+        // ISSUE:
+        // ad-hoc solution
+        let spacing = UIView(frame: .zero)
+        spacing.backgroundColor = UIColor.clear
+        spacing.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView.addArrangedSubview(spacing)
+        
+        let seperator = UIView()
+        seperator.backgroundColor = UIColor.lightGray
+        seperator.frame = CGRect(x: 0, y: self.contentView.frame.size.height - 2.0,  width: self.contentView.frame.size.width, height: 2.0)
+        self.contentView.addSubview(seperator)
         
         NSLayoutConstraint.activate([
-            self.dateText.widthAnchor.constraint(equalToConstant: 100),
-            self.recordText.widthAnchor.constraint(equalToConstant: 100),
+            self.dateText.widthAnchor.constraint(equalToConstant: 60),
+            self.recordText.widthAnchor.constraint(equalToConstant: 60),
+            self.editButton.widthAnchor.constraint(equalToConstant: 20),
+            self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
+            spacing.widthAnchor.constraint(equalToConstant: 10),
+            spacing.heightAnchor.constraint(equalToConstant: 10),
         ])
     }
     
@@ -65,8 +88,8 @@ class TableView: CardView {
         tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10),
-            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
+            tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30),
+            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30),
             tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ])

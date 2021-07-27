@@ -29,6 +29,7 @@
 		49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADB26AD5644008E7F81 /* RoundButton.swift */; };
 		49744AE026AD596C008E7F81 /* AddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADF26AD596C008E7F81 /* AddModal.swift */; };
 		49DD566526AFE4C800D1FEA4 /* TableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */; };
+		49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566626AFECC800D1FEA4 /* IconButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		49744ADB26AD5644008E7F81 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		49744ADF26AD596C008E7F81 /* AddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModal.swift; sourceTree = "<group>"; };
 		49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProtocol.swift; sourceTree = "<group>"; };
+		49DD566626AFECC800D1FEA4 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				49744ADB26AD5644008E7F81 /* RoundButton.swift */,
 				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
 				49218F6B26AC0107004BDDD4 /* TableView.swift */,
+				49DD566626AFECC800D1FEA4 /* IconButton.swift */,
 				49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */,
 				491D917926A7137000E669DF /* CardView.swift */,
 				491D917526A7116400E669DF /* Color.swift */,
@@ -301,6 +304,7 @@
 			files = (
 				49DD566526AFE4C800D1FEA4 /* TableProtocol.swift in Sources */,
 				491D917A26A7137000E669DF /* CardView.swift in Sources */,
+				49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */,
 				49744AE026AD596C008E7F81 /* AddModal.swift in Sources */,
 				492647B226AD9F25000A0B84 /* AddForm.swift in Sources */,
 				491D914726A70D6A00E669DF /* ViewController.swift in Sources */,

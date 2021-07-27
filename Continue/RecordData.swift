@@ -27,8 +27,13 @@ extension RecordData {
     static func getArray() -> [RecordData] {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        var recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
         
-        return try! context?.fetch(fetchRequest) as! [RecordData]
+        // ISSUE:
+        // performance?
+        recordArray.sort { $0.date! > $1.date! }
+        
+        return recordArray
     }
     
     static func clearArray() {

@@ -78,6 +78,8 @@ class AddModal: UIView {
         UIView.animate(withDuration: 0.5, animations: {
             self.center.y -= UIScreen.main.bounds.height
         })
+        
+        addForm.focusRecordField()
     }
     
     func fadeOut() {

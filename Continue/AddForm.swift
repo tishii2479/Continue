@@ -83,6 +83,10 @@ class AddForm: CardView {
         super.init(coder: coder)
     }
     
+    func focusRecordField() {
+        recordField.becomeFirstResponder()
+    }
+    
     func addData() -> String? {
         let record: Int32? = Int32(recordField.text!)
         guard let _record = record else {

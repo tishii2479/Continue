@@ -56,4 +56,12 @@ extension RecordData {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
+    static func deleteData(data: RecordData) {
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+
+        context?.delete(data)
+        
+        self.save()
+    }
+    
 }

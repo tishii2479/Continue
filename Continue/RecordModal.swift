@@ -10,9 +10,10 @@ import UIKit
 class RecordModal: UIView {
     
     weak var delegate: DataProtocol?
+    var editingData: RecordData?
     let recordForm = RecordForm()
     let addButton = RoundButton(title: "記録する")
-    let closeButton = RoundButton()
+    let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
 
     init() {
         super.init(frame: UIScreen.main.bounds)
@@ -32,14 +33,14 @@ class RecordModal: UIView {
         NSLayoutConstraint.activate([
             self.closeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             self.closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-            self.closeButton.widthAnchor.constraint(equalToConstant: 50),
-            self.closeButton.heightAnchor.constraint(equalToConstant: 50),
+            self.closeButton.widthAnchor.constraint(equalToConstant: 30),
+            self.closeButton.heightAnchor.constraint(equalToConstant: 30),
             self.recordForm.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
             self.recordForm.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             self.recordForm.topAnchor.constraint(equalTo: self.closeButton.bottomAnchor, constant: 20),
-            self.recordForm.heightAnchor.constraint(equalToConstant: 250),
+            self.recordForm.heightAnchor.constraint(equalToConstant: 200),
             self.addButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-            self.addButton.topAnchor.constraint(equalTo: self.recordForm.bottomAnchor, constant: 30),
+            self.addButton.topAnchor.constraint(equalTo: self.recordForm.bottomAnchor, constant: 20),
             self.addButton.heightAnchor.constraint(equalToConstant: 50),
             self.addButton.widthAnchor.constraint(equalToConstant: 200),
         ])
@@ -57,6 +58,10 @@ class RecordModal: UIView {
     }
     
     @objc func addButtonClicked(_ sender: UIButton) {
+        if self.editingData != nil {
+            RecordData.deleteData(data: self.editingData!)
+        }
+        
         if let error = recordForm.addData() {
             showError(error: error)
             return
@@ -68,8 +73,10 @@ class RecordModal: UIView {
     
     func fadeIn(data: RecordData?) {
         self.recordForm.clearField()
+        self.editingData = nil
         
         if let _data = data {
+            self.editingData = _data
             self.recordForm.setField(data: _data)
         }
         

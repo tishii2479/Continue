@@ -13,4 +13,6 @@ protocol DataProtocol : AnyObject {
     
     func openModal(data: RecordData?)
     
+    func deleteAlert(data: RecordData)
+    
 }

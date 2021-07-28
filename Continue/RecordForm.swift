@@ -11,10 +11,10 @@ class RecordForm: CardView {
     
     let stackView = UIStackView()
     let titleLabel = TextLabel()
-    let dateLabel = TextLabel()
+    let dateImage = UIImageView()
     let datePicker = UIDatePicker()
     let dateField = UITextField()
-    let recordLabel = TextLabel()
+    let recordImage = UIImageView()
     let recordField = UITextField()
 
     override init() {
@@ -30,7 +30,9 @@ class RecordForm: CardView {
         self.titleLabel.text = "記録する"
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: titleLabel.font.pointSize)
         
-        self.dateLabel.text = "日付"
+        self.dateImage.image = UIImage(systemName: "calendar.circle")?.withRenderingMode(.alwaysTemplate)
+        self.dateImage.tintColor = UIColor.pink
+        self.dateImage.translatesAutoresizingMaskIntoConstraints = false
         
         self.dateField.backgroundColor = UIColor.lightGray
         self.dateField.layer.cornerRadius = 10
@@ -38,7 +40,9 @@ class RecordForm: CardView {
         self.dateField.textColor = UIColor.text
         self.dateField.text = Date().toString(format: "yyyy/MM/dd E")
         
-        self.recordLabel.text = "記録"
+        self.recordImage.image = UIImage(systemName: "pencil.circle")?.withRenderingMode(.alwaysTemplate)
+        self.recordImage.tintColor = UIColor.pink
+        self.recordImage.translatesAutoresizingMaskIntoConstraints = false
         
         self.recordField.backgroundColor = UIColor.lightGray
         self.recordField.layer.cornerRadius = 10
@@ -48,10 +52,11 @@ class RecordForm: CardView {
         self.recordField.keyboardType = .numberPad
 
         self.stackView.addArrangedSubview(titleLabel)
-        self.stackView.addArrangedSubview(dateLabel)
         self.stackView.addArrangedSubview(dateField)
-        self.stackView.addArrangedSubview(recordLabel)
         self.stackView.addArrangedSubview(recordField)
+        
+        self.addSubview(dateImage)
+        self.addSubview(recordImage)
         
         self.datePicker.datePickerMode = .date
         self.datePicker.locale = .current
@@ -74,14 +79,22 @@ class RecordForm: CardView {
         self.recordField.inputAccessoryView = toolbar
         
         NSLayoutConstraint.activate([
-            stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
-            stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
+            self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
             self.dateField.widthAnchor.constraint(equalToConstant: 200),
             self.dateField.heightAnchor.constraint(equalToConstant: 40),
+            self.dateImage.leftAnchor.constraint(equalTo: self.dateField.leftAnchor, constant: 10),
+            self.dateImage.centerYAnchor.constraint(equalTo: self.dateField.centerYAnchor),
+            self.dateImage.widthAnchor.constraint(equalToConstant: 20),
+            self.dateImage.heightAnchor.constraint(equalToConstant: 20),
             self.recordField.widthAnchor.constraint(equalToConstant: 200),
             self.recordField.heightAnchor.constraint(equalToConstant: 60),
+            self.recordImage.leftAnchor.constraint(equalTo: self.recordField.leftAnchor, constant: 10),
+            self.recordImage.centerYAnchor.constraint(equalTo: self.recordField.centerYAnchor),
+            self.recordImage.widthAnchor.constraint(equalToConstant: 20),
+            self.recordImage.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
     
@@ -99,7 +112,7 @@ class RecordForm: CardView {
             return "PARSE_ERROR"
         }
         
-        RecordData.addData(date: datePicker.date, record: _record)
+        RecordData.addData(date: Calendar.current.startOfDay(for: datePicker.date), record: _record)
     
         return nil
     }
@@ -116,7 +129,7 @@ class RecordForm: CardView {
     }
     
     @objc func changeDateValue() {
-        dateField.text = datePicker.date.toString(format: "yyyy/MM/dd E")
+        self.dateField.text = self.datePicker.date.toString(format: "yyyy/MM/dd E")
     }
 
 }

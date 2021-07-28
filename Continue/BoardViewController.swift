@@ -97,5 +97,27 @@ class BoardViewController: ViewController, DataProtocol {
     func openModal(data: RecordData?) {
         self.recordModal.fadeIn(data: data)
     }
+    
+    func deleteAlert(data: RecordData) {
+        let message = data.date!.toString(format: "yyyy/MM/dd") + "のデータを削除しますか？"
+        let alert = UIAlertController(title: "データの削除", message: message, preferredStyle: UIAlertController.Style.alert)
+
+        let deleteAction = UIAlertAction(title: "削除する", style: UIAlertAction.Style.destructive, handler: {
+            (action: UIAlertAction!) in
+            
+            RecordData.deleteData(data: data)
+            self.reloadData()
+        })
+
+        let closeAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+            print("キャンセル")
+        })
+
+        alert.addAction(deleteAction)
+        alert.addAction(closeAction)
+
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }

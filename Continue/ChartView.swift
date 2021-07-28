@@ -21,24 +21,24 @@ class ChartView: CardView {
     }
     
     func setChartView() {
-        chartView.translatesAutoresizingMaskIntoConstraints = false
+        self.chartView.translatesAutoresizingMaskIntoConstraints = false
         
-        chartView.xAxis.labelPosition = .bottom
-        chartView.xAxis.drawAxisLineEnabled = false
-        chartView.xAxis.setLabelCount(7, force: true)
-        chartView.xAxis.granularity = 1
+        self.chartView.xAxis.labelPosition = .bottom
+        self.chartView.xAxis.drawAxisLineEnabled = false
+        self.chartView.xAxis.setLabelCount(7, force: true)
+        self.chartView.xAxis.granularity = 1
         
-        chartView.leftAxis.axisMinimum = 0
-        chartView.leftAxis.enabled = false
-        chartView.rightAxis.enabled = false
+        self.chartView.leftAxis.axisMinimum = 0
+        self.chartView.leftAxis.enabled = false
+        self.chartView.rightAxis.enabled = false
         
-        chartView.highlightPerTapEnabled = false
-        chartView.highlightPerDragEnabled = false
-        chartView.doubleTapToZoomEnabled = false
-        chartView.pinchZoomEnabled = false
-        chartView.legend.enabled = false
+        self.chartView.highlightPerTapEnabled = false
+        self.chartView.highlightPerDragEnabled = false
+        self.chartView.doubleTapToZoomEnabled = false
+        self.chartView.pinchZoomEnabled = false
+        self.chartView.legend.enabled = false
         
-        self.addSubview(chartView)
+        self.addSubview(self.chartView)
         
         NSLayoutConstraint.activate([
             self.chartView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
@@ -74,14 +74,23 @@ class ChartView: CardView {
         chartDataSet.setCircleColor(UIColor.pink)
         chartDataSet.setColor(UIColor.pink)
         chartDataSet.circleHoleColor = UIColor.pink
+        chartDataSet.valueFormatter = ChartDataFormatter()
         chartDataSet.mode = .linear
         
-        chartView.data = LineChartData(dataSet: chartDataSet)
+        self.chartView.data = LineChartData(dataSet: chartDataSet)
         
         // set x axis 0-index value
-        chartView.xAxis.valueFormatter = ChartXAxisFormatter(startDate: recordData[0].date!)
+        self.chartView.xAxis.valueFormatter = ChartXAxisFormatter(startDate: recordData[0].date!)
         
-        chartView.animate(xAxisDuration: 1)
+        self.chartView.animate(xAxisDuration: 1)
+    }
+    
+    class ChartDataFormatter: NSObject, ValueFormatter {
+        
+        func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+            return String(format: "%.0f", value)
+        }
+        
     }
     
     class ChartXAxisFormatter: NSObject, AxisValueFormatter {
@@ -98,6 +107,7 @@ class ChartView: CardView {
             dateFormatter.dateFormat = "M/d"
             return dateFormatter.string(from: modifiedDate)
         }
+        
     }
 
 }

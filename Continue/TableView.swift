@@ -14,7 +14,8 @@ class TableCell: UITableViewCell {
     let dateText = TextLabel()
     let recordText = TextLabel()
     let badgeImage = UIImageView()
-    let editButton = IconButton(systemName: "pencil")
+    let editButton = IconButton(systemName: "pencil", cornerRadius: 10)
+    let deleteButton = IconButton(systemName: "multiply", cornerRadius: 10)
     
     var data: RecordData?
     
@@ -38,15 +39,19 @@ class TableCell: UITableViewCell {
         
         self.recordText.textAlignment = .right
         
-        self.badgeImage.image = UIImage(systemName: "line.diagonal.arrow")
+        self.badgeImage.image = UIImage(systemName: "line.diagonal.arrow")?.withRenderingMode(.alwaysTemplate)
+        self.badgeImage.tintColor = UIColor.pink
+    
         
         self.editButton.addTarget(self, action: #selector(editTapped(_:)), for: .touchUpInside)
+        self.deleteButton.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         
         self.contentView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.dateText)
         self.stackView.addArrangedSubview(self.recordText)
         self.stackView.addArrangedSubview(self.badgeImage)
         self.stackView.addArrangedSubview(self.editButton)
+        self.stackView.addArrangedSubview(self.deleteButton)
         
         let seperator = UIView()
         seperator.backgroundColor = UIColor.lightGray
@@ -58,7 +63,8 @@ class TableCell: UITableViewCell {
             self.badgeImage.widthAnchor.constraint(equalToConstant: 20),
             self.badgeImage.heightAnchor.constraint(equalToConstant: 20),
             self.editButton.widthAnchor.constraint(equalToConstant: 20),
-            self.editButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
+            self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
+            self.deleteButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
         ])
     }
     
@@ -75,6 +81,10 @@ class TableCell: UITableViewCell {
     
     @objc func editTapped(_ sender: UIButton) {
         self.delegate?.openModal(data: self.data)
+    }
+    
+    @objc func deleteTapped(_ sender: UIButton) {
+        self.delegate?.deleteAlert(data: self.data!)
     }
     
 }

@@ -14,18 +14,19 @@ class RecordModal: UIView {
     let recordForm = RecordForm()
     let addButton = RoundButton(title: "記録する")
     let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
+    let blackMask = UIView()
 
     init() {
         super.init(frame: UIScreen.main.bounds)
         
-        let mask = UIView(frame: UIScreen.main.bounds)
-        mask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        self.blackMask.frame = CGRect(x: 0, y: -self.bounds.height, width: self.bounds.width, height: self.bounds.height * 2)
+        self.blackMask.backgroundColor = UIColor.clear
         
-        self.addSubview(mask)
+        self.addSubview(self.blackMask)
         
-        self.addSubview(closeButton)
-        self.addSubview(recordForm)
-        self.addSubview(addButton)
+        self.addSubview(self.closeButton)
+        self.addSubview(self.recordForm)
+        self.addSubview(self.addButton)
         
         self.closeButton.addTarget(self, action: #selector(closeButtonClicked(_:)), for: .touchUpInside)
         self.addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
@@ -47,6 +48,10 @@ class RecordModal: UIView {
         
         // set side menu out of the screen
         self.center.y = UIScreen.main.bounds.height * 3 / 2
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(closeButtonClicked(_:)))
+        swipeGesture.direction = .down
+        self.recordForm.addGestureRecognizer(swipeGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -85,6 +90,7 @@ class RecordModal: UIView {
         // fade in side menu
         UIView.animate(withDuration: 0.5, animations: {
             self.center.y = UIScreen.main.bounds.height / 2
+            self.blackMask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
         })
     }
     
@@ -94,6 +100,7 @@ class RecordModal: UIView {
         // fade out side menu
         UIView.animate(withDuration: 0.5, animations: {
             self.center.y = UIScreen.main.bounds.height * 3 / 2
+            self.blackMask.backgroundColor = UIColor.clear
         })
     }
     

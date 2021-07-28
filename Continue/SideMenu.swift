@@ -11,7 +11,6 @@ class MenuContent: UIView {
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 250, height: UIScreen.main.bounds.height))
-        self.translatesAutoresizingMaskIntoConstraints = false
         
         self.backgroundColor = UIColor.back
         self.addShadow()
@@ -49,21 +48,26 @@ class MenuContent: UIView {
 
 class SideMenu: UIView {
     
+    let blackMask = UIView()
+    let menu = MenuContent()
+    
     init() {
         super.init(frame: UIScreen.main.bounds)
         
         self.addShadow()
         
-        let mask = UIView(frame: UIScreen.main.bounds)
-        mask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        self.blackMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width * 2, height: self.bounds.height)
+        self.blackMask.backgroundColor = UIColor.clear
         
-        let menu = MenuContent()
-        
-        self.addSubview(mask)
+        self.addSubview(blackMask)
         self.addSubview(menu)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(fadeOut(_:)))
-        mask.addGestureRecognizer(tapGesture)
+        self.blackMask.addGestureRecognizer(tapGesture)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(fadeOut(_:)))
+        swipeGesture.direction = .left
+        self.addGestureRecognizer(swipeGesture)
         
         // set side menu out of the screen
         self.center.x = -UIScreen.main.bounds.width / 2
@@ -82,6 +86,7 @@ class SideMenu: UIView {
         // fade in side menu
         UIView.animate(withDuration: 0.5, animations: {
             self.center.x = UIScreen.main.bounds.width / 2
+            self.blackMask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
         })
     }
     
@@ -89,6 +94,7 @@ class SideMenu: UIView {
         // fade out side menu
         UIView.animate(withDuration: 0.5, animations: {
             self.center.x = -UIScreen.main.bounds.width / 2
+            self.blackMask.backgroundColor = UIColor.clear
         })
     }
 }

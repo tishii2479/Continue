@@ -31,6 +31,7 @@
 		497EC79026B1170500E2E324 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 497EC78F26B1170500E2E324 /* Charts */; };
 		49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */; };
 		49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566626AFECC800D1FEA4 /* IconButton.swift */; };
+		49F9DE0826B1940600E2EB2E /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9DE0726B1940600E2EB2E /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		49744ADF26AD596C008E7F81 /* RecordModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModal.swift; sourceTree = "<group>"; };
 		49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		49DD566626AFECC800D1FEA4 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		49F9DE0726B1940600E2EB2E /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,24 +133,13 @@
 		491D914126A70D6A00E669DF /* Continue */ = {
 			isa = PBXGroup;
 			children = (
+				49F9DE0F26B198BE00E2EB2E /* Protocol */,
+				49F9DE0E26B198A900E2EB2E /* Entity */,
+				49F9DE0D26B1989000E2EB2E /* Extension */,
+				49F9DE0C26B1988200E2EB2E /* ViewController */,
+				49F9DE0B26B1986600E2EB2E /* View */,
 				491D914226A70D6A00E669DF /* AppDelegate.swift */,
 				491D914426A70D6A00E669DF /* SceneDelegate.swift */,
-				491D914626A70D6A00E669DF /* ViewController.swift */,
-				49744AD926AD4BE5008E7F81 /* SideMenu.swift */,
-				491D917726A7130E00E669DF /* BoardViewController.swift */,
-				49744ADF26AD596C008E7F81 /* RecordModal.swift */,
-				492647B126AD9F25000A0B84 /* RecordForm.swift */,
-				4936862726AE6A83002F7146 /* RecordData.swift */,
-				4936862926AE712E002F7146 /* Date.swift */,
-				49744ADB26AD5644008E7F81 /* RoundButton.swift */,
-				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
-				49218F6B26AC0107004BDDD4 /* TableView.swift */,
-				49DD566626AFECC800D1FEA4 /* IconButton.swift */,
-				49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */,
-				491D917926A7137000E669DF /* CardView.swift */,
-				491D917526A7116400E669DF /* UIColor.swift */,
-				491D917D26A7176F00E669DF /* UIView.swift */,
-				492647B526ADAC3E000A0B84 /* TextLabel.swift */,
 				491D914E26A70D6A00E669DF /* Assets.xcassets */,
 				491D915026A70D6A00E669DF /* LaunchScreen.storyboard */,
 				491D915326A70D6A00E669DF /* Info.plist */,
@@ -173,6 +164,58 @@
 				491D916926A70D6A00E669DF /* Info.plist */,
 			);
 			path = ContinueUITests;
+			sourceTree = "<group>";
+		};
+		49F9DE0B26B1986600E2EB2E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				492647B526ADAC3E000A0B84 /* TextLabel.swift */,
+				49744AD926AD4BE5008E7F81 /* SideMenu.swift */,
+				49744ADF26AD596C008E7F81 /* RecordModal.swift */,
+				492647B126AD9F25000A0B84 /* RecordForm.swift */,
+				49744ADB26AD5644008E7F81 /* RoundButton.swift */,
+				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
+				49218F6B26AC0107004BDDD4 /* TableView.swift */,
+				49DD566626AFECC800D1FEA4 /* IconButton.swift */,
+				491D917926A7137000E669DF /* CardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		49F9DE0C26B1988200E2EB2E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				491D914626A70D6A00E669DF /* ViewController.swift */,
+				491D917726A7130E00E669DF /* BoardViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		49F9DE0D26B1989000E2EB2E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4936862926AE712E002F7146 /* Date.swift */,
+				491D917526A7116400E669DF /* UIColor.swift */,
+				491D917D26A7176F00E669DF /* UIView.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		49F9DE0E26B198A900E2EB2E /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				4936862726AE6A83002F7146 /* RecordData.swift */,
+				49F9DE0726B1940600E2EB2E /* Habit.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		49F9DE0F26B198BE00E2EB2E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +359,7 @@
 				49744AE026AD596C008E7F81 /* RecordModal.swift in Sources */,
 				492647B226AD9F25000A0B84 /* RecordForm.swift in Sources */,
 				491D914726A70D6A00E669DF /* ViewController.swift in Sources */,
+				49F9DE0826B1940600E2EB2E /* Habit.swift in Sources */,
 				4936862826AE6A83002F7146 /* RecordData.swift in Sources */,
 				491D914326A70D6A00E669DF /* AppDelegate.swift in Sources */,
 				4936862A26AE712E002F7146 /* Date.swift in Sources */,

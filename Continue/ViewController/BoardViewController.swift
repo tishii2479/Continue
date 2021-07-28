@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class BoardViewController: ViewController, DataProtocol {
+class BoardViewController: ViewController, DataProtocol, HabitProtocol {
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -21,8 +21,10 @@ class BoardViewController: ViewController, DataProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        recordModal.delegate = self
-        tableView.delegate = self
+        self.recordModal.delegate = self
+        self.tableView.delegate = self
+        
+        self.sideMenu.delegate = self
     }
     
     override func setNavigationBar() {
@@ -65,7 +67,7 @@ class BoardViewController: ViewController, DataProtocol {
             self.stackView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40),
             self.stackView.heightAnchor.constraint(equalToConstant: 800),
             // constraints for cards
-            self.chartView.leftAnchor.constraint(equalTo:self.stackView.leftAnchor, constant: 0),
+            self.chartView.leftAnchor.constraint(equalTo: self.stackView.leftAnchor, constant: 0),
             self.chartView.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
             self.chartView.heightAnchor.constraint(equalToConstant: 200),
             self.addButton.heightAnchor.constraint(equalToConstant: 50),
@@ -112,4 +114,10 @@ class BoardViewController: ViewController, DataProtocol {
         self.present(alert, animated: true, completion: nil)
     }
 
+    func openNewHabit() {
+        let habitVC = CreateHabitViewController()
+        habitVC.modalPresentationStyle = .fullScreen
+        self.present(habitVC, animated: true, completion: nil)
+    }
+    
 }

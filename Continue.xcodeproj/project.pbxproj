@@ -29,6 +29,9 @@
 		49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADB26AD5644008E7F81 /* RoundButton.swift */; };
 		49744AE026AD596C008E7F81 /* RecordModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADF26AD596C008E7F81 /* RecordModal.swift */; };
 		497EC79026B1170500E2E324 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 497EC78F26B1170500E2E324 /* Charts */; };
+		499E32B726B1994000909D52 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E32B626B1994000909D52 /* CreateHabitViewController.swift */; };
+		499E32B926B19C4800909D52 /* HabitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E32B826B19C4800909D52 /* HabitProtocol.swift */; };
+		499E32BB26B19EC000909D52 /* HabitForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E32BA26B19EC000909D52 /* HabitForm.swift */; };
 		49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */; };
 		49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566626AFECC800D1FEA4 /* IconButton.swift */; };
 		49F9DE0826B1940600E2EB2E /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9DE0726B1940600E2EB2E /* Habit.swift */; };
@@ -79,6 +82,9 @@
 		49744AD926AD4BE5008E7F81 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		49744ADB26AD5644008E7F81 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		49744ADF26AD596C008E7F81 /* RecordModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModal.swift; sourceTree = "<group>"; };
+		499E32B626B1994000909D52 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
+		499E32B826B19C4800909D52 /* HabitProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitProtocol.swift; sourceTree = "<group>"; };
+		499E32BA26B19EC000909D52 /* HabitForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitForm.swift; sourceTree = "<group>"; };
 		49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		49DD566626AFECC800D1FEA4 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		49F9DE0726B1940600E2EB2E /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -178,6 +184,7 @@
 				49218F6B26AC0107004BDDD4 /* TableView.swift */,
 				49DD566626AFECC800D1FEA4 /* IconButton.swift */,
 				491D917926A7137000E669DF /* CardView.swift */,
+				499E32BA26B19EC000909D52 /* HabitForm.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			children = (
 				491D914626A70D6A00E669DF /* ViewController.swift */,
 				491D917726A7130E00E669DF /* BoardViewController.swift */,
+				499E32B626B1994000909D52 /* CreateHabitViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */,
+				499E32B826B19C4800909D52 /* HabitProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -363,14 +372,17 @@
 				4936862826AE6A83002F7146 /* RecordData.swift in Sources */,
 				491D914326A70D6A00E669DF /* AppDelegate.swift in Sources */,
 				4936862A26AE712E002F7146 /* Date.swift in Sources */,
+				499E32B926B19C4800909D52 /* HabitProtocol.swift in Sources */,
 				49744ADA26AD4BE5008E7F81 /* SideMenu.swift in Sources */,
 				49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */,
+				499E32BB26B19EC000909D52 /* HabitForm.swift in Sources */,
 				491D914D26A70D6A00E669DF /* Continue.xcdatamodeld in Sources */,
 				49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */,
 				491D917626A7116400E669DF /* UIColor.swift in Sources */,
 				491D914526A70D6A00E669DF /* SceneDelegate.swift in Sources */,
 				491D917826A7130E00E669DF /* BoardViewController.swift in Sources */,
 				491D917E26A7176F00E669DF /* UIView.swift in Sources */,
+				499E32B726B1994000909D52 /* CreateHabitViewController.swift in Sources */,
 				49218F6C26AC0107004BDDD4 /* TableView.swift in Sources */,
 				492647B626ADAC3E000A0B84 /* TextLabel.swift in Sources */,
 			);

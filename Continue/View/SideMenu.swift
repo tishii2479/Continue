@@ -9,6 +9,8 @@ import UIKit
 
 class MenuContent: UIView {
     
+    weak var delegate: HabitProtocol?
+    
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 250, height: UIScreen.main.bounds.height))
         
@@ -41,15 +43,34 @@ class MenuContent: UIView {
         let spacing = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
         spacing.backgroundColor = UIColor.clear
         stackView.addArrangedSubview(spacing)
+        
+        let newButton = UIButton()
+        newButton.setTitle("新規作成", for: .normal)
+        newButton.setTitleColor(UIColor.pink, for: .normal)
+        newButton.addTarget(self, action: #selector(newButtonTapped(_:)), for: .touchUpInside)
+        stackView.addArrangedSubview(newButton)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
+    @objc func newButtonTapped(_ sender: UIButton) {
+        self.delegate?.openNewHabit()
+    }
+    
 }
 
 class SideMenu: UIView {
+    
+    var delegate: HabitProtocol? {
+        set {
+            self.menu.delegate = newValue
+        }
+        get {
+            return nil
+        }
+    }
     
     let blackMask = UIView()
     let menu = MenuContent()
@@ -100,4 +121,5 @@ class SideMenu: UIView {
             self.blackMask.backgroundColor = UIColor.clear
         })
     }
+    
 }

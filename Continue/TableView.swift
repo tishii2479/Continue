@@ -22,25 +22,24 @@ class TableCell: UITableViewCell {
         self.backgroundColor = .clear
         self.selectionStyle = .none
         
-        self.stackView.frame = self.bounds
+        // ISSUE:
+        // using ad-hoc solution to fit the size of the cell
+        self.stackView.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 50, height: self.bounds.height)
         self.stackView.axis = .horizontal
         self.stackView.alignment = .center
-        self.stackView.distribution = .equalSpacing
+        self.stackView.distribution = .fill
+        self.stackView.spacing = 20
         
         self.dateText.font = UIFont.systemFont(ofSize: 12)
+        self.recordText.font = UIFont.systemFont(ofSize: 14)
+        
+        self.recordText.textAlignment = .right
         
         self.contentView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.dateText)
         self.stackView.addArrangedSubview(self.recordText)
         self.stackView.addArrangedSubview(self.editButton)
         self.stackView.addArrangedSubview(self.deleteButton)
-        
-        // ISSUE:
-        // ad-hoc solution
-        let spacing = UIView(frame: .zero)
-        spacing.backgroundColor = UIColor.clear
-        spacing.translatesAutoresizingMaskIntoConstraints = false
-        self.stackView.addArrangedSubview(spacing)
         
         let seperator = UIView()
         seperator.backgroundColor = UIColor.lightGray
@@ -49,11 +48,9 @@ class TableCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             self.dateText.widthAnchor.constraint(equalToConstant: 60),
-            self.recordText.widthAnchor.constraint(equalToConstant: 60),
             self.editButton.widthAnchor.constraint(equalToConstant: 20),
             self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
-            spacing.widthAnchor.constraint(equalToConstant: 10),
-            spacing.heightAnchor.constraint(equalToConstant: 10),
+            self.deleteButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
         ])
     }
     
@@ -63,7 +60,7 @@ class TableCell: UITableViewCell {
     
     func setup(data: RecordData) {
         dateText.text = data.date?.toString(format: "MM/dd E")
-        recordText.text = String(data.record)
+        recordText.text = "\(data.record)回"
     }
     
 }

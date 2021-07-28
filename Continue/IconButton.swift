@@ -12,7 +12,6 @@ class IconButton: UIButton {
     init(systemName: String) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = UIColor.red
         
         self.setImage(UIImage(systemName: systemName), for: .normal)
     }

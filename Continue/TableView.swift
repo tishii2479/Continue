@@ -14,8 +14,8 @@ class TableCell: UITableViewCell {
     let dateText = TextLabel()
     let recordText = TextLabel()
     let badgeImage = UIImageView()
-    let editButton = IconButton(systemName: "pencil", cornerRadius: 10)
-    let deleteButton = IconButton(systemName: "multiply", cornerRadius: 10)
+    let editButton = IconButton(systemName: "pencil", cornerRadius: 15)
+    let deleteButton = IconButton(systemName: "multiply", cornerRadius: 15)
     
     var data: RecordData?
     
@@ -32,7 +32,7 @@ class TableCell: UITableViewCell {
         self.stackView.axis = .horizontal
         self.stackView.alignment = .center
         self.stackView.distribution = .fill
-        self.stackView.spacing = 20
+        self.stackView.spacing = 10
         
         self.dateText.font = UIFont.systemFont(ofSize: 12)
         self.recordText.font = UIFont.systemFont(ofSize: 14)
@@ -55,11 +55,13 @@ class TableCell: UITableViewCell {
         self.contentView.addSubview(seperator)
         
         NSLayoutConstraint.activate([
-            self.dateText.widthAnchor.constraint(equalToConstant: 80),
+            self.dateText.widthAnchor.constraint(equalToConstant: 70),
             self.badgeImage.widthAnchor.constraint(equalToConstant: 20),
             self.badgeImage.heightAnchor.constraint(equalToConstant: 20),
-            self.editButton.widthAnchor.constraint(equalToConstant: 20),
-            self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
+            self.editButton.widthAnchor.constraint(equalToConstant: 30),
+            self.editButton.heightAnchor.constraint(equalToConstant: 30),
+            self.deleteButton.widthAnchor.constraint(equalToConstant: 30),
+            self.deleteButton.heightAnchor.constraint(equalToConstant: 30),
             self.deleteButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
         ])
     }

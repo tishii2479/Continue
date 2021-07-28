@@ -12,6 +12,7 @@ class IconButton: UIButton {
     init(systemName: String, cornerRadius: CGFloat) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false
+            
         self.backgroundColor = UIColor.back
         self.layer.cornerRadius = cornerRadius
         self.addShadow()

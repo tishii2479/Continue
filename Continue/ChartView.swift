@@ -74,7 +74,7 @@ class ChartView: CardView {
         chartDataSet.setCircleColor(UIColor.pink)
         chartDataSet.setColor(UIColor.pink)
         chartDataSet.circleHoleColor = UIColor.pink
-        chartDataSet.mode = .cubicBezier
+        chartDataSet.mode = .linear
         
         chartView.data = LineChartData(dataSet: chartDataSet)
         

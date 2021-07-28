@@ -52,8 +52,14 @@ class AddForm: CardView {
         stackView.addArrangedSubview(dateField)
         stackView.addArrangedSubview(recordLabel)
         stackView.addArrangedSubview(recordField)
-
-        datePicker.datePickerMode = UIDatePicker.Mode.date
+        
+        datePicker.datePickerMode = .date
+        datePicker.locale = .current
+        if #available(iOS 14, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.sizeToFit()
+        }
+        
         datePicker.timeZone = NSTimeZone.local
         datePicker.locale = Locale.current
         datePicker.addTarget(self, action: #selector(changeDateValue), for: .valueChanged)
@@ -61,11 +67,11 @@ class AddForm: CardView {
 
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 35))
         let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(changeDateValue))
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endEditing))
         toolbar.setItems([spacelItem, doneItem], animated: true)
 
-        dateField.inputView = datePicker
         dateField.inputAccessoryView = toolbar
+        recordField.inputAccessoryView = toolbar
         
         NSLayoutConstraint.activate([
             stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
@@ -99,8 +105,6 @@ class AddForm: CardView {
     }
     
     @objc func changeDateValue() {
-        dateField.endEditing(true)
-        
         dateField.text = datePicker.date.toString(format: "yyyy/MM/dd E")
     }
 

@@ -39,10 +39,6 @@ class TableCell: UITableViewCell {
         
         self.recordText.textAlignment = .right
         
-        self.badgeImage.image = UIImage(systemName: "line.diagonal.arrow")?.withRenderingMode(.alwaysTemplate)
-        self.badgeImage.tintColor = UIColor.pink
-    
-        
         self.editButton.addTarget(self, action: #selector(editTapped(_:)), for: .touchUpInside)
         self.deleteButton.addTarget(self, action: #selector(deleteTapped(_:)), for: .touchUpInside)
         
@@ -72,11 +68,14 @@ class TableCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func setup(data: RecordData, delegate: DataProtocol?) {
+    func setup(data: RecordData, delta: Int, delegate: DataProtocol?) {
         self.delegate = delegate
         self.data = data
-        dateText.text = data.date?.toString(format: "M/d E")
-        recordText.text = "\(data.record)回"
+        
+        self.dateText.text = data.date?.toString(format: "M/d E")
+        self.recordText.text = "\(data.record)回"
+        
+        self.setBadgeImage(delta: delta)
     }
     
     @objc func editTapped(_ sender: UIButton) {
@@ -85,6 +84,25 @@ class TableCell: UITableViewCell {
     
     @objc func deleteTapped(_ sender: UIButton) {
         self.delegate?.deleteAlert(data: self.data!)
+    }
+    
+    private func setBadgeImage(delta: Int) {
+        var name: String!
+        var color: UIColor!
+        
+        if delta > 0 {
+            name = "arrow.up.right"
+            color = UIColor.pink
+        } else if delta == 0 {
+            name = "arrow.forward"
+            color = UIColor.gray
+        } else {
+            name = "arrow.down.right"
+            color = UIColor.lightBlue
+        }
+        
+        self.badgeImage.image = UIImage(systemName: name)?.withRenderingMode(.alwaysTemplate)
+        self.badgeImage.tintColor = color
     }
     
 }
@@ -140,7 +158,9 @@ extension TableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableCell(style: .default, reuseIdentifier: "cell")
-        cell.setup(data: records[indexPath.row], delegate: self.delegate)
+        
+        let delta = (indexPath.row == records.count - 1 ? 0 : records[indexPath.row].record - records[indexPath.row + 1].record)
+        cell.setup(data: records[indexPath.row], delta: Int(delta), delegate: self.delegate)
         
         return cell
     }

@@ -27,9 +27,6 @@ class BoardViewController: ViewController, DataProtocol {
     
     override func setNavigationBar() {
         super.setNavigationBar()
-        
-        let menuButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearTable(_:)))
-        self.navigationItem.rightBarButtonItem = menuButton
     }
     
     override func setLayout() {
@@ -82,11 +79,6 @@ class BoardViewController: ViewController, DataProtocol {
     
     @objc func addButtonClicked(_ sender: UIButton) {
         self.recordModal.fadeIn(data: nil)
-    }
-    
-    @objc func clearTable(_ sender: UIBarButtonItem) {
-        RecordData.clearArray()
-        self.reloadData()
     }
     
     func reloadData() {

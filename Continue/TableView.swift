@@ -47,7 +47,7 @@ class TableCell: UITableViewCell {
         self.contentView.addSubview(seperator)
         
         NSLayoutConstraint.activate([
-            self.dateText.widthAnchor.constraint(equalToConstant: 60),
+            self.dateText.widthAnchor.constraint(equalToConstant: 80),
             self.editButton.widthAnchor.constraint(equalToConstant: 20),
             self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
             self.deleteButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
@@ -59,7 +59,7 @@ class TableCell: UITableViewCell {
     }
     
     func setup(data: RecordData) {
-        dateText.text = data.date?.toString(format: "MM/dd E")
+        dateText.text = data.date?.toString(format: "M/d E")
         recordText.text = "\(data.record)回"
     }
     
@@ -96,7 +96,7 @@ class TableView: CardView {
         super.init(coder: coder)
     }
     
-    func reloadTable() {
+    func reloadData() {
         records = RecordData.getArray()
         tableView.reloadData()
     }

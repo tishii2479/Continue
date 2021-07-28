@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class BoardViewController: ViewController, TableProtocol {
+class BoardViewController: ViewController, DataProtocol {
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -21,10 +21,6 @@ class BoardViewController: ViewController, TableProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     override func setNavigationBar() {
@@ -88,11 +84,12 @@ class BoardViewController: ViewController, TableProtocol {
     
     @objc func clearTable(_ sender: UIBarButtonItem) {
         RecordData.clearArray()
-        reloadTable()
+        reloadData()
     }
     
-    func reloadTable() {
-        tableView.reloadTable()
+    func reloadData() {
+        tableView.reloadData()
+        chartView.reloadData()
     }
 
 }

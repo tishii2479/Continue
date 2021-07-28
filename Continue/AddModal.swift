@@ -9,13 +9,13 @@ import UIKit
 
 class AddModal: UIView {
     
-    unowned var tableController: TableProtocol?
+    unowned var tableController: DataProtocol?
     let addForm = AddForm()
     let addButton = RoundButton(title: "記録する")
     let closeButton = RoundButton()
     private var isSeen: Bool = false
 
-    init(controller: TableProtocol?) {
+    init(controller: DataProtocol?) {
         super.init(frame: UIScreen.main.bounds)
         
         self.tableController = controller
@@ -65,7 +65,7 @@ class AddModal: UIView {
             return
         }
         
-        tableController?.reloadTable()
+        tableController?.reloadData()
         fadeOut()
     }
     

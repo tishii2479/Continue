@@ -24,7 +24,7 @@ extension RecordData {
         self.save()
     }
     
-    static func getArray() -> [RecordData] {
+    static func getArray(sortAscending: Bool = false) -> [RecordData] {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
         var recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
@@ -32,6 +32,10 @@ extension RecordData {
         // ISSUE:
         // performance?
         recordArray.sort { $0.date! > $1.date! }
+        
+        if sortAscending {
+            recordArray.reverse()
+        }
         
         return recordArray
     }

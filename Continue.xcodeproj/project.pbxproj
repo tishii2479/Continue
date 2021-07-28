@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,7 +28,8 @@
 		49744ADA26AD4BE5008E7F81 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744AD926AD4BE5008E7F81 /* SideMenu.swift */; };
 		49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADB26AD5644008E7F81 /* RoundButton.swift */; };
 		49744AE026AD596C008E7F81 /* AddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADF26AD596C008E7F81 /* AddModal.swift */; };
-		49DD566526AFE4C800D1FEA4 /* TableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */; };
+		497EC79026B1170500E2E324 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 497EC78F26B1170500E2E324 /* Charts */; };
+		49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */; };
 		49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566626AFECC800D1FEA4 /* IconButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +78,7 @@
 		49744AD926AD4BE5008E7F81 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		49744ADB26AD5644008E7F81 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		49744ADF26AD596C008E7F81 /* AddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModal.swift; sourceTree = "<group>"; };
-		49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProtocol.swift; sourceTree = "<group>"; };
+		49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		49DD566626AFECC800D1FEA4 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				497EC79026B1170500E2E324 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +144,7 @@
 				49218F6926ABFAC3004BDDD4 /* ChartView.swift */,
 				49218F6B26AC0107004BDDD4 /* TableView.swift */,
 				49DD566626AFECC800D1FEA4 /* IconButton.swift */,
-				49DD566426AFE4C800D1FEA4 /* TableProtocol.swift */,
+				49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */,
 				491D917926A7137000E669DF /* CardView.swift */,
 				491D917526A7116400E669DF /* Color.swift */,
 				491D917D26A7176F00E669DF /* UIView.swift */,
@@ -189,6 +191,9 @@
 			dependencies = (
 			);
 			name = Continue;
+			packageProductDependencies = (
+				497EC78F26B1170500E2E324 /* Charts */,
+			);
 			productName = Continue;
 			productReference = 491D913F26A70D6A00E669DF /* Continue.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +265,9 @@
 				Base,
 			);
 			mainGroup = 491D913626A70D6A00E669DF;
+			packageReferences = (
+				497EC78E26B1170500E2E324 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 491D914026A70D6A00E669DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -302,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49DD566526AFE4C800D1FEA4 /* TableProtocol.swift in Sources */,
+				49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */,
 				491D917A26A7137000E669DF /* CardView.swift in Sources */,
 				49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */,
 				49744AE026AD596C008E7F81 /* AddModal.swift in Sources */,
@@ -645,6 +653,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		497EC78E26B1170500E2E324 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		497EC78F26B1170500E2E324 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 497EC78E26B1170500E2E324 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		491D914B26A70D6A00E669DF /* Continue.xcdatamodeld */ = {

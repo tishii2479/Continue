@@ -49,8 +49,6 @@ class MenuContent: UIView {
 
 class SideMenu: UIView {
     
-    private var isSeen: Bool = false
-
     init() {
         super.init(frame: UIScreen.main.bounds)
         
@@ -68,7 +66,7 @@ class SideMenu: UIView {
         mask.addGestureRecognizer(tapGesture)
         
         // set side menu out of the screen
-        self.center.x -= UIScreen.main.bounds.width
+        self.center.x = -UIScreen.main.bounds.width / 2
     }
     
     required init?(coder: NSCoder) {
@@ -81,24 +79,16 @@ class SideMenu: UIView {
     }
     
     func fadeIn() {
-        if isSeen { return }
-        
-        isSeen = true
-        
         // fade in side menu
         UIView.animate(withDuration: 0.5, animations: {
-            self.center.x += UIScreen.main.bounds.width
+            self.center.x = UIScreen.main.bounds.width / 2
         })
     }
     
     func fadeOut() {
-        if isSeen == false { return }
-        
-        isSeen = false
-        
         // fade out side menu
         UIView.animate(withDuration: 0.5, animations: {
-            self.center.x -= UIScreen.main.bounds.width
+            self.center.x = -UIScreen.main.bounds.width / 2
         })
     }
 }

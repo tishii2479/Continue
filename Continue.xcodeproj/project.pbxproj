@@ -21,13 +21,13 @@
 		491D917E26A7176F00E669DF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491D917D26A7176F00E669DF /* UIView.swift */; };
 		49218F6A26ABFAC3004BDDD4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49218F6926ABFAC3004BDDD4 /* ChartView.swift */; };
 		49218F6C26AC0107004BDDD4 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49218F6B26AC0107004BDDD4 /* TableView.swift */; };
-		492647B226AD9F25000A0B84 /* AddForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492647B126AD9F25000A0B84 /* AddForm.swift */; };
+		492647B226AD9F25000A0B84 /* RecordForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492647B126AD9F25000A0B84 /* RecordForm.swift */; };
 		492647B626ADAC3E000A0B84 /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492647B526ADAC3E000A0B84 /* TextLabel.swift */; };
 		4936862826AE6A83002F7146 /* RecordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4936862726AE6A83002F7146 /* RecordData.swift */; };
 		4936862A26AE712E002F7146 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4936862926AE712E002F7146 /* Date.swift */; };
 		49744ADA26AD4BE5008E7F81 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744AD926AD4BE5008E7F81 /* SideMenu.swift */; };
 		49744ADC26AD5644008E7F81 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADB26AD5644008E7F81 /* RoundButton.swift */; };
-		49744AE026AD596C008E7F81 /* AddModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADF26AD596C008E7F81 /* AddModal.swift */; };
+		49744AE026AD596C008E7F81 /* RecordModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49744ADF26AD596C008E7F81 /* RecordModal.swift */; };
 		497EC79026B1170500E2E324 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 497EC78F26B1170500E2E324 /* Charts */; };
 		49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */; };
 		49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD566626AFECC800D1FEA4 /* IconButton.swift */; };
@@ -71,13 +71,13 @@
 		491D917D26A7176F00E669DF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		49218F6926ABFAC3004BDDD4 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		49218F6B26AC0107004BDDD4 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		492647B126AD9F25000A0B84 /* AddForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddForm.swift; sourceTree = "<group>"; };
+		492647B126AD9F25000A0B84 /* RecordForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordForm.swift; sourceTree = "<group>"; };
 		492647B526ADAC3E000A0B84 /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
 		4936862726AE6A83002F7146 /* RecordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordData.swift; sourceTree = "<group>"; };
 		4936862926AE712E002F7146 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		49744AD926AD4BE5008E7F81 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		49744ADB26AD5644008E7F81 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		49744ADF26AD596C008E7F81 /* AddModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddModal.swift; sourceTree = "<group>"; };
+		49744ADF26AD596C008E7F81 /* RecordModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModal.swift; sourceTree = "<group>"; };
 		49DD566426AFE4C800D1FEA4 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		49DD566626AFECC800D1FEA4 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,8 +136,8 @@
 				491D914626A70D6A00E669DF /* ViewController.swift */,
 				49744AD926AD4BE5008E7F81 /* SideMenu.swift */,
 				491D917726A7130E00E669DF /* BoardViewController.swift */,
-				49744ADF26AD596C008E7F81 /* AddModal.swift */,
-				492647B126AD9F25000A0B84 /* AddForm.swift */,
+				49744ADF26AD596C008E7F81 /* RecordModal.swift */,
+				492647B126AD9F25000A0B84 /* RecordForm.swift */,
 				4936862726AE6A83002F7146 /* RecordData.swift */,
 				4936862926AE712E002F7146 /* Date.swift */,
 				49744ADB26AD5644008E7F81 /* RoundButton.swift */,
@@ -313,8 +313,8 @@
 				49DD566526AFE4C800D1FEA4 /* DataProtocol.swift in Sources */,
 				491D917A26A7137000E669DF /* CardView.swift in Sources */,
 				49DD566726AFECC800D1FEA4 /* IconButton.swift in Sources */,
-				49744AE026AD596C008E7F81 /* AddModal.swift in Sources */,
-				492647B226AD9F25000A0B84 /* AddForm.swift in Sources */,
+				49744AE026AD596C008E7F81 /* RecordModal.swift in Sources */,
+				492647B226AD9F25000A0B84 /* RecordForm.swift in Sources */,
 				491D914726A70D6A00E669DF /* ViewController.swift in Sources */,
 				4936862826AE6A83002F7146 /* RecordData.swift in Sources */,
 				491D914326A70D6A00E669DF /* AppDelegate.swift in Sources */,

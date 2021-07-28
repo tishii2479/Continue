@@ -8,5 +8,9 @@
 import Foundation
 
 protocol DataProtocol : AnyObject {
+    
     func reloadData()
+    
+    func openModal(data: RecordData?)
+    
 }

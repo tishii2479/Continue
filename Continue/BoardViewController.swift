@@ -12,7 +12,7 @@ class BoardViewController: ViewController, DataProtocol {
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
-    lazy var addModal = AddModal(controller: self)
+    let recordModal = RecordModal()
     let chartView = ChartView()
     let tableView = TableView()
     let addButton = RoundButton(title: "記録する")
@@ -21,6 +21,8 @@ class BoardViewController: ViewController, DataProtocol {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        recordModal.delegate = self
+        tableView.delegate = self
     }
     
     override func setNavigationBar() {
@@ -33,63 +35,67 @@ class BoardViewController: ViewController, DataProtocol {
     override func setLayout() {
         super.setLayout()
         
-        scrollView.frame = self.view.bounds
-        scrollView.showsVerticalScrollIndicator = false
+        self.scrollView.frame = self.view.bounds
+        self.scrollView.showsVerticalScrollIndicator = false
 
-        self.view.addSubview(scrollView)
+        self.view.addSubview(self.scrollView)
         
-        addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
+        self.addButton.addTarget(self, action: #selector(addButtonClicked(_:)), for: .touchUpInside)
         
-        stackView.addArrangedSubview(chartView)
-        stackView.addArrangedSubview(addButton)
-        stackView.addArrangedSubview(tableView)
+        self.stackView.addArrangedSubview(chartView)
+        self.stackView.addArrangedSubview(addButton)
+        self.stackView.addArrangedSubview(tableView)
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        stackView.spacing = 20
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        self.stackView.axis = .vertical
+        self.stackView.alignment = .center
+        self.stackView.distribution = .fill
+        self.stackView.spacing = 20
         
-        scrollView.addSubview(stackView)
+        self.scrollView.addSubview(self.stackView)
         
         NSLayoutConstraint.activate([
             // constraints for scrollView
-            scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0),
-            scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0),
-            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
+            self.scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0),
+            self.scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0),
+            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0),
             // constraints for stackView
-            stackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 20),
-            stackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
-            stackView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40),
-            stackView.heightAnchor.constraint(equalToConstant: 800),
+            self.stackView.leftAnchor.constraint(equalTo: self.scrollView.leftAnchor, constant: 20),
+            self.stackView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor, constant: -20),
+            self.stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 20),
+            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -20),
+            self.stackView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40),
+            self.stackView.heightAnchor.constraint(equalToConstant: 800),
             // constraints for cards
-            chartView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
-            chartView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
-            chartView.heightAnchor.constraint(equalToConstant: 200),
-            addButton.heightAnchor.constraint(equalToConstant: 50),
-            addButton.widthAnchor.constraint(equalToConstant: 200),
-            tableView.leftAnchor.constraint(equalTo: stackView.leftAnchor, constant: 0),
-            tableView.rightAnchor.constraint(equalTo: stackView.rightAnchor, constant: 0),
+            self.chartView.leftAnchor.constraint(equalTo:self.stackView.leftAnchor, constant: 0),
+            self.chartView.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
+            self.chartView.heightAnchor.constraint(equalToConstant: 200),
+            self.addButton.heightAnchor.constraint(equalToConstant: 50),
+            self.addButton.widthAnchor.constraint(equalToConstant: 200),
+            self.tableView.leftAnchor.constraint(equalTo: self.stackView.leftAnchor, constant: 0),
+            self.tableView.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
         ])
         
-        self.navigationController?.view.addSubview(addModal)
+        self.navigationController?.view.addSubview(recordModal)
     }
     
     @objc func addButtonClicked(_ sender: UIButton) {
-        addModal.fadeIn()
+        self.recordModal.fadeIn(data: nil)
     }
     
     @objc func clearTable(_ sender: UIBarButtonItem) {
         RecordData.clearArray()
-        reloadData()
+        self.reloadData()
     }
     
     func reloadData() {
-        tableView.reloadData()
-        chartView.reloadData()
+        self.tableView.reloadData()
+        self.chartView.reloadData()
+    }
+    
+    func openModal(data: RecordData?) {
+        self.recordModal.fadeIn(data: data)
     }
 
 }

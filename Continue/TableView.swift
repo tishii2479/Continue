@@ -9,11 +9,14 @@ import UIKit
 
 class TableCell: UITableViewCell {
     
+    weak var delegate: DataProtocol?
     let stackView = UIStackView()
     let dateText = TextLabel()
     let recordText = TextLabel()
+    let badgeImage = UIImageView()
     let editButton = IconButton(systemName: "pencil")
-    let deleteButton = IconButton(systemName: "lasso")
+    
+    var data: RecordData?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,11 +38,15 @@ class TableCell: UITableViewCell {
         
         self.recordText.textAlignment = .right
         
+        self.badgeImage.image = UIImage(systemName: "line.diagonal.arrow")
+        
+        self.editButton.addTarget(self, action: #selector(editTapped(_:)), for: .touchUpInside)
+        
         self.contentView.addSubview(self.stackView)
         self.stackView.addArrangedSubview(self.dateText)
         self.stackView.addArrangedSubview(self.recordText)
+        self.stackView.addArrangedSubview(self.badgeImage)
         self.stackView.addArrangedSubview(self.editButton)
-        self.stackView.addArrangedSubview(self.deleteButton)
         
         let seperator = UIView()
         seperator.backgroundColor = UIColor.lightGray
@@ -48,9 +55,10 @@ class TableCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             self.dateText.widthAnchor.constraint(equalToConstant: 80),
+            self.badgeImage.widthAnchor.constraint(equalToConstant: 20),
+            self.badgeImage.heightAnchor.constraint(equalToConstant: 20),
             self.editButton.widthAnchor.constraint(equalToConstant: 20),
-            self.deleteButton.widthAnchor.constraint(equalToConstant: 20),
-            self.deleteButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
+            self.editButton.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),
         ])
     }
     
@@ -58,15 +66,22 @@ class TableCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    func setup(data: RecordData) {
+    func setup(data: RecordData, delegate: DataProtocol?) {
+        self.delegate = delegate
+        self.data = data
         dateText.text = data.date?.toString(format: "M/d E")
         recordText.text = "\(data.record)回"
+    }
+    
+    @objc func editTapped(_ sender: UIButton) {
+        self.delegate?.openModal(data: self.data)
     }
     
 }
 
 class TableView: CardView {
     
+    weak var delegate: DataProtocol?
     let tableView = UITableView()
     var records: [RecordData]!
 
@@ -115,7 +130,7 @@ extension TableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = TableCell(style: .default, reuseIdentifier: "cell")
-        cell.setup(data: records[indexPath.row])
+        cell.setup(data: records[indexPath.row], delegate: self.delegate)
         
         return cell
     }

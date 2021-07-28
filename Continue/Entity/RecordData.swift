@@ -8,11 +8,18 @@
 import UIKit
 import CoreData
 
+//
+// ISSUE:
+// this extension is almost the same with Habit.swift
+// it is necessary to integrate two extensions in one
+//
 extension RecordData {
+    
+    static let name = "RecordData"
     
     static func addData(date: Date, record: Int32) {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         var recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
         
         let data = RecordData(context: context!)
@@ -26,7 +33,7 @@ extension RecordData {
     
     static func getArray(sortAscending: Bool = false) -> [RecordData] {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         var recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
         
         // ISSUE:
@@ -42,7 +49,7 @@ extension RecordData {
     
     static func clearArray() {
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "RecordData")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         let recordArray = try! context?.fetch(fetchRequest) as! [RecordData]
         
         for record in recordArray {

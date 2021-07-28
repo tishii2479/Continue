@@ -20,7 +20,8 @@ class MenuContent: UIView {
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
+        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 30, leading: 30, bottom: 30, trailing: 30)
+        stackView.spacing = 30
         
         self.addSubview(stackView)
         
@@ -29,9 +30,11 @@ class MenuContent: UIView {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
         stackView.addArrangedSubview(titleLabel)
         
-        for _ in 0 ..< 4 {
+        let habits = Habit.getArray()
+        
+        for habit in habits {
             let label = TextLabel()
-            label.text = "ランニング"
+            label.text = habit.name
             stackView.addArrangedSubview(label)
         }
         

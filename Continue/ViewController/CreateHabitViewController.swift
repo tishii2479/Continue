@@ -18,6 +18,10 @@ class CreateHabitViewController: ViewController {
         super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.habitForm.focusNameField()
+    }
+    
     override func setLayout() {
         super.setLayout()
         
@@ -37,13 +41,13 @@ class CreateHabitViewController: ViewController {
         
         NSLayoutConstraint.activate([
             self.closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30),
+            self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
             self.closeButton.widthAnchor.constraint(equalToConstant: 30),
             self.closeButton.heightAnchor.constraint(equalToConstant: 30),
             // constraints for stackView
             self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
             self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -50),
             self.stackView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40),
             self.stackView.heightAnchor.constraint(equalToConstant: 230),
             // constraints for cards

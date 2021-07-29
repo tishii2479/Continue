@@ -54,7 +54,7 @@ class HabitForm: CardView {
             self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
             self.stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            self.nameField.widthAnchor.constraint(equalToConstant: 200),
+            self.nameField.widthAnchor.constraint(equalToConstant: 250),
             self.nameField.heightAnchor.constraint(equalToConstant: 40),
             self.nameImage.leftAnchor.constraint(equalTo: self.nameField.leftAnchor, constant: 10),
             self.nameImage.centerYAnchor.constraint(equalTo: self.nameField.centerYAnchor),
@@ -67,7 +67,7 @@ class HabitForm: CardView {
         super.init(coder: coder)
     }
     
-    func focusRecordField() {
+    func focusNameField() {
         self.nameField.becomeFirstResponder()
     }
     

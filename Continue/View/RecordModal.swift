@@ -33,7 +33,7 @@ class RecordModal: UIView {
         
         NSLayoutConstraint.activate([
             self.closeButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
-            self.closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
+            self.closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             self.closeButton.widthAnchor.constraint(equalToConstant: 30),
             self.closeButton.heightAnchor.constraint(equalToConstant: 30),
             self.recordForm.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),

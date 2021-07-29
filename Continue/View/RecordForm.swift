@@ -70,9 +70,10 @@ class RecordForm: CardView {
         self.datePicker.addTarget(self, action: #selector(changeDateValue), for: .valueChanged)
         self.dateField.inputView = datePicker
 
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 35))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 50))
         let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endEditing))
+        doneItem.tintColor = UIColor.pink
         toolbar.setItems([spacelItem, doneItem], animated: true)
 
         self.dateField.inputAccessoryView = toolbar

@@ -39,6 +39,9 @@ class MenuContent: UIView {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        // FIXME:
+        // constraint error
+        // without this line, the table width will be zero
         self.tableView.widthAnchor.constraint(equalToConstant: self.bounds.width - 40).isActive = true
         self.tableView.separatorStyle = .none
         self.tableView.backgroundColor = UIColor.back

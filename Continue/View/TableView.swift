@@ -26,7 +26,7 @@ class TableCell: UITableViewCell {
         self.backgroundColor = .clear
         self.selectionStyle = .none
         
-        // ISSUE:
+        // FIXME:
         // using ad-hoc solution to fit the size of the cell
         self.stackView.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 50, height: self.bounds.height)
         self.stackView.axis = .horizontal

@@ -90,6 +90,7 @@ class BoardViewController: ViewController, DataProtocol {
     }
     
     func reloadData() {
+        print("reload Data")
         self.tableView.reloadData()
         self.chartView.reloadData()
         self.sideMenu.reloadData()

@@ -118,22 +118,22 @@ class TableView: CardView {
     override init() {
         super.init()
         
-        records = RecordData.getArray()
+        records = RecordData.getDataArray()
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = UIColor.back
-        tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.back
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.separatorStyle = .none
         
         NSLayoutConstraint.activate([
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30),
-            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30),
-            tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30),
+            self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30),
+            self.tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ])
     }
 
@@ -142,7 +142,7 @@ class TableView: CardView {
     }
     
     func reloadData() {
-        records = RecordData.getArray()
+        records = RecordData.getDataArray()
         tableView.reloadData()
     }
     
@@ -159,7 +159,7 @@ extension TableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TableCell(style: .default, reuseIdentifier: "cell")
+        let cell = TableCell(style: .default, reuseIdentifier: "tableCell")
         
         let delta = (indexPath.row == records.count - 1 ? 0 : records[indexPath.row].record - records[indexPath.row + 1].record)
         cell.setup(data: records[indexPath.row], delta: Int(delta), delegate: self.delegate)

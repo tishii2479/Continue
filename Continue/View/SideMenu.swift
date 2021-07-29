@@ -9,7 +9,11 @@ import UIKit
 
 class MenuContent: UIView {
     
-    weak var delegate: HabitProtocol?
+    weak var sideMenu: SideMenu?
+    weak var delegate: DataProtocol?
+    private var habits = Habit.getDataArray()
+    let stackView = UIStackView()
+    let tableView = UITableView()
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 250, height: UIScreen.main.bounds.height))
@@ -17,38 +21,34 @@ class MenuContent: UIView {
         self.backgroundColor = UIColor.back
         self.addShadow()
         
-        let stackView = UIStackView(frame: self.bounds)
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 30, leading: 30, bottom: 30, trailing: 30)
-        stackView.spacing = 30
+        self.stackView.frame = self.bounds
+        self.stackView.axis = .vertical
+        self.stackView.alignment = .leading
+        self.stackView.distribution = .fill
+        self.stackView.isLayoutMarginsRelativeArrangement = true
+        self.stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 30, leading: 30, bottom: 30, trailing: 30)
+        self.stackView.spacing = 30
         
-        self.addSubview(stackView)
+        self.addSubview(self.stackView)
         
         let titleLabel = TextLabel()
         titleLabel.text = "一覧"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 30)
-        stackView.addArrangedSubview(titleLabel)
+        self.stackView.addArrangedSubview(titleLabel)
         
-        let habits = Habit.getArray()
-        
-        for habit in habits {
-            let label = TextLabel()
-            label.text = habit.name
-            stackView.addArrangedSubview(label)
-        }
-        
-        let spacing = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
-        spacing.backgroundColor = UIColor.clear
-        stackView.addArrangedSubview(spacing)
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.widthAnchor.constraint(equalToConstant: self.bounds.width - 40).isActive = true
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundColor = UIColor.back
+        self.stackView.addArrangedSubview(self.tableView)
         
         let newButton = UIButton()
         newButton.setTitle("新規作成", for: .normal)
         newButton.setTitleColor(UIColor.pink, for: .normal)
         newButton.addTarget(self, action: #selector(newButtonTapped(_:)), for: .touchUpInside)
-        stackView.addArrangedSubview(newButton)
+        self.stackView.addArrangedSubview(newButton)
     }
     
     required init?(coder: NSCoder) {
@@ -59,11 +59,48 @@ class MenuContent: UIView {
         self.delegate?.openNewHabit()
     }
     
+    func reloadData() {
+        self.habits = Habit.getDataArray()
+        self.tableView.reloadData()
+    }
+    
+}
+
+extension MenuContent: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        RecordData.currentHabit = habits[indexPath.row]
+        self.delegate?.reloadData()
+        self.sideMenu?.fadeOut()
+    }
+    
+}
+
+extension MenuContent: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return habits.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = habits[indexPath.row].name
+        cell.textLabel?.textColor = UIColor.text
+        cell.backgroundColor = UIColor.back
+        cell.selectionStyle = .none
+        
+        return cell
+    }
+    
 }
 
 class SideMenu: UIView {
     
-    var delegate: HabitProtocol? {
+    var delegate: DataProtocol? {
         set {
             self.menu.delegate = newValue
         }
@@ -78,6 +115,7 @@ class SideMenu: UIView {
     init() {
         super.init(frame: UIScreen.main.bounds)
         
+        self.menu.sideMenu = self
         self.addShadow()
         
         self.blackMask.frame = CGRect(x: 0, y: 0, width: self.bounds.width * 2, height: self.bounds.height)
@@ -120,6 +158,10 @@ class SideMenu: UIView {
             self.center.x = -UIScreen.main.bounds.width / 2
             self.blackMask.backgroundColor = UIColor.clear
         })
+    }
+    
+    func reloadData() {
+        self.menu.reloadData()
     }
     
 }

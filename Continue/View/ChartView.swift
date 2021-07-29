@@ -53,10 +53,14 @@ class ChartView: CardView {
     }
     
     func reloadData() {
-        let recordData: [RecordData] = RecordData.getArray(sortAscending: true)
+        let recordData: [RecordData] = RecordData.getDataArray(sortAscending: true)
         
         // No data
-        if recordData.count == 0 { return }
+        if recordData.count == 0 {
+            self.chartView.data = nil
+            self.chartView.animate(xAxisDuration: 1)
+            return
+        }
         
         var dataEntries = [ChartDataEntry]()
         

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class BoardViewController: ViewController, DataProtocol, HabitProtocol {
+class BoardViewController: ViewController, DataProtocol {
     
     let scrollView = UIScrollView()
     let stackView = UIStackView()
@@ -27,8 +27,14 @@ class BoardViewController: ViewController, DataProtocol, HabitProtocol {
         self.sideMenu.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.reloadData()
+    }
+    
     override func setNavigationBar() {
         super.setNavigationBar()
+        
+        self.navigationItem.title = RecordData.currentHabit?.name
     }
     
     override func setLayout() {
@@ -86,6 +92,9 @@ class BoardViewController: ViewController, DataProtocol, HabitProtocol {
     func reloadData() {
         self.tableView.reloadData()
         self.chartView.reloadData()
+        self.sideMenu.reloadData()
+        
+        self.navigationItem.title = RecordData.currentHabit?.name
     }
     
     func openModal(data: RecordData?) {

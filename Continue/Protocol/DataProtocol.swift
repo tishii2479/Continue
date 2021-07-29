@@ -15,4 +15,6 @@ protocol DataProtocol : AnyObject {
     
     func deleteAlert(data: RecordData)
     
+    func openNewHabit()
+    
 }

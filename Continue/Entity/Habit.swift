@@ -16,7 +16,9 @@ import CoreData
 extension Habit {
     
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    static let name = "Habit"
+    static var name: String {
+        return "Habit"
+    }
     
     static func addData(habitName: String) {
         var habitArray = getDataArray()
@@ -26,6 +28,9 @@ extension Habit {
         data.id = UUID().uuidString
         
         habitArray.append(data)
+        
+        // Set current habit to this data
+        UserDefaults.standard.setValue(data.id, forKey: RecordData.currentHabitKey)
         
         self.save()
     }
@@ -45,6 +50,20 @@ extension Habit {
         context?.delete(data)
         
         self.save()
+    }
+    
+    static func getHabitFromId(id: String?) -> Habit? {
+        if id == nil { return nil }
+        
+        let habitArray = getDataArray()
+        
+        for habit in habitArray {
+            if habit.id == id {
+                return habit
+            }
+        }
+        
+        return nil
     }
     
 }

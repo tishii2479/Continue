@@ -16,7 +16,7 @@ class BoardViewController: ViewController, DataProtocol {
     let chartView = ChartView()
     let tableView = TableView()
     let addButton = RoundButton(title: "記録する")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +25,8 @@ class BoardViewController: ViewController, DataProtocol {
         self.tableView.delegate = self
         
         self.sideMenu.delegate = self
+        
+        self.checkFirstLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,7 +36,7 @@ class BoardViewController: ViewController, DataProtocol {
     override func setNavigationBar() {
         super.setNavigationBar()
         
-        self.navigationItem.title = RecordData.currentHabit?.name
+        self.navigationItem.title = Habit.getHabitFromId(id: RecordData.currentHabitId)?.name
     }
     
     override func setLayout() {
@@ -95,7 +97,7 @@ class BoardViewController: ViewController, DataProtocol {
         self.chartView.reloadData()
         self.sideMenu.reloadData()
         
-        self.navigationItem.title = RecordData.currentHabit?.name
+        self.setNavigationBar()
     }
     
     func openModal(data: RecordData?) {
@@ -124,10 +126,17 @@ class BoardViewController: ViewController, DataProtocol {
         self.present(alert, animated: true, completion: nil)
     }
 
-    func openNewHabit() {
-        let habitVC = CreateHabitViewController()
+    func openNewHabit(isFirstLoad: Bool) {
+        let animated = !isFirstLoad
+        let habitVC = CreateHabitViewController(isFirstLoad: isFirstLoad)
         habitVC.modalPresentationStyle = .fullScreen
-        self.present(habitVC, animated: true, completion: nil)
+        self.present(habitVC, animated: animated, completion: nil)
+    }
+    
+    private func checkFirstLoad() {
+        if RecordData.currentHabitId == nil {
+            openNewHabit(isFirstLoad: true)
+        }
     }
     
 }

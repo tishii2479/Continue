@@ -16,13 +16,20 @@ import CoreData
 extension RecordData {
     
     static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-    // TODO: get current habitID from userdefaults
-    static var currentHabit: Habit? = nil
-    static let name = "RecordData"
+
+    static var currentHabitKey: String {
+        return "CurrentHabit"
+    }
+    static var currentHabitId: String? {
+        return UserDefaults.standard.string(forKey: currentHabitKey)
+    }
+    static var name: String {
+        return "RecordData"
+    }
     
     static func addData(date: Date, record: Int32) {
         
-        guard let habitID = currentHabit?.id else {
+        guard let habitID = currentHabitId else {
             // TODO:
             // show error
             print("NO_HABIT_ID")
@@ -53,7 +60,7 @@ extension RecordData {
     
     static func getDataArray(sortAscending: Bool = false) -> [RecordData] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: name)
-        if let id = currentHabit?.id {
+        if let id = currentHabitId {
             let predicate = NSPredicate(format: "%K = %@", "habitID", id)
             fetchRequest.predicate = predicate
         }

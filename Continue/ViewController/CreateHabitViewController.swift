@@ -9,10 +9,20 @@ import UIKit
 
 class CreateHabitViewController: ViewController {
 
-    let stackView = UIStackView()
-    let habitForm = HabitForm()
-    let addButton = RoundButton(title: "はじめる")
-    let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
+    private var isFirstLoad: Bool = false
+    private let stackView = UIStackView()
+    private let habitForm = HabitForm()
+    private let addButton = RoundButton(title: "はじめる")
+    private let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
+    
+    init(isFirstLoad: Bool) {
+        super.init(nibName: nil, bundle: nil)
+        self.isFirstLoad = isFirstLoad
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +35,16 @@ class CreateHabitViewController: ViewController {
     override func setLayout() {
         super.setLayout()
         
-        self.view.addSubview(self.closeButton)
+        if isFirstLoad == false {
+            self.view.addSubview(self.closeButton)
+            NSLayoutConstraint.activate([
+                self.closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
+                self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
+                self.closeButton.widthAnchor.constraint(equalToConstant: 30),
+                self.closeButton.heightAnchor.constraint(equalToConstant: 30),
+            ])
+        }
+        
         self.view.addSubview(self.stackView)
         
         self.stackView.addArrangedSubview(habitForm)
@@ -40,10 +59,6 @@ class CreateHabitViewController: ViewController {
         self.addButton.addTarget(self, action: #selector(addNewHabit(_:)), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            self.closeButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
-            self.closeButton.widthAnchor.constraint(equalToConstant: 30),
-            self.closeButton.heightAnchor.constraint(equalToConstant: 30),
             // constraints for stackView
             self.stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
             self.stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
@@ -69,6 +84,7 @@ class CreateHabitViewController: ViewController {
         }
         
         Habit.addData(habitName: _name)
+        
         self.dismiss(animated: true, completion: nil)
     }
     

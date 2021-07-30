@@ -59,7 +59,7 @@ class MenuContent: UIView {
     }
     
     @objc func newButtonTapped(_ sender: UIButton) {
-        self.delegate?.openNewHabit()
+        self.delegate?.openNewHabit(isFirstLoad: true)
     }
     
     func reloadData() {
@@ -76,7 +76,7 @@ extension MenuContent: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        RecordData.currentHabit = habits[indexPath.row]
+        UserDefaults.standard.setValue(self.habits[indexPath.row].id, forKey: RecordData.currentHabitKey)
         self.delegate?.reloadData()
         self.sideMenu?.fadeOut()
     }

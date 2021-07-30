@@ -36,7 +36,24 @@ class BoardViewController: ViewController, DataProtocol {
     override func setNavigationBar() {
         super.setNavigationBar()
         
-        self.navigationItem.title = Habit.getHabitFromId(id: RecordData.currentHabitId)?.name
+        self.titleField.textAlignment = .center
+        self.titleField.font = UIFont.boldSystemFont(ofSize: 16)
+        self.titleField.addTarget(self, action: #selector(startEditingTitleField(_:)), for: .editingDidBegin)
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(endEditingTitleField(_:)))
+        doneItem.tintColor = UIColor.pink
+        toolbar.setItems([spaceItem, doneItem], animated: true)
+
+        self.titleField.inputAccessoryView = toolbar
+        self.navigationItem.titleView = titleField
+        
+        self.setNavigationTitleText(title: RecordData.currentHabitName)
+        
+        let deleteButton = UIBarButtonItem(image: UIImage(systemName: "trash"), style: .plain, target: self, action: #selector(deleteButtonClicked(_:)))
+        deleteButton.tintColor = UIColor.pink
+        self.navigationItem.rightBarButtonItem = deleteButton
     }
     
     override func setLayout() {
@@ -87,12 +104,8 @@ class BoardViewController: ViewController, DataProtocol {
         self.navigationController?.view.addSubview(recordModal)
     }
     
-    @objc func addButtonClicked(_ sender: UIButton) {
-        self.recordModal.fadeIn(data: nil)
-    }
-    
     func reloadData() {
-        print("reload Data")
+        print("[debug] reload data")
         self.tableView.reloadData()
         self.chartView.reloadData()
         self.sideMenu.reloadData()
@@ -137,6 +150,49 @@ class BoardViewController: ViewController, DataProtocol {
         if RecordData.currentHabitId == nil {
             openNewHabit(isFirstLoad: true)
         }
+    }
+    
+    @objc func endEditingTitleField(_ sender: UIBarButtonItem) {
+        // TODO: check nil
+        
+        self.titleField.endEditing(true)
+        self.switchMask(isOn: false)
+    }
+    
+    @objc func startEditingTitleField(_ sender: UITextField) {
+        self.switchMask(isOn: true)
+    }
+    
+    @objc func addButtonClicked(_ sender: UIButton) {
+        self.recordModal.fadeIn(data: nil)
+    }
+    
+    @objc func deleteButtonClicked(_ sender: UIBarButtonItem) {
+        guard let habitName = RecordData.currentHabitName else {
+            print("ERROR")
+            return
+        }
+        
+        let title = habitName + "のデータを削除しますか？"
+        let message = "一度削除するとデータは元に戻りません"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+
+        let deleteAction = UIAlertAction(title: "削除する", style: UIAlertAction.Style.destructive, handler: {
+            (action: UIAlertAction!) in
+            Habit.deleteData(data: Habit.currentHabit)
+            
+            self.reloadData()
+        })
+
+        let closeAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: {
+            (action: UIAlertAction!) in
+            print("キャンセル")
+        })
+
+        alert.addAction(deleteAction)
+        alert.addAction(closeAction)
+
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

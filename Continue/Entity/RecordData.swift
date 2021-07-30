@@ -25,6 +25,9 @@ extension RecordData {
     static var currentHabitId: String? {
         return UserDefaults.standard.string(forKey: currentHabitKey)
     }
+    static var currentHabitName: String? {
+        return Habit.getHabitFromId(id: RecordData.currentHabitId)?.name
+    }
     static var name: String {
         return "RecordData"
     }

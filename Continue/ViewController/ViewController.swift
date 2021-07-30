@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var sideMenu = SideMenu()
+    let titleField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+    let viewMask = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,6 @@ class ViewController: UIViewController {
     
     func setNavigationBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor.back
-        self.navigationItem.title = "新しい習慣"
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.text,
-            .font: UIFont.boldSystemFont(ofSize: 16)
-        ]
         
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(fadeInMenu(_:)))
         menuButton.tintColor = UIColor.pink
@@ -50,11 +47,31 @@ class ViewController: UIViewController {
     }
     
     func setLayout() {
-        self.navigationController?.view.addSubview(sideMenu)
+        self.navigationController?.view.addSubview(self.sideMenu)
+        
+        self.viewMask.frame = self.view.bounds
+        self.viewMask.backgroundColor = UIColor.clear
+        self.viewMask.isUserInteractionEnabled = false
+        self.viewMask.layer.zPosition = 100
+        self.view.addSubview(self.viewMask)
+    }
+    
+    func setNavigationTitleText(title: String?) {
+        if title == nil {
+            self.titleField.text = ""
+            return
+        }
+        self.titleField.text = title
     }
     
     @objc func fadeInMenu(_ sender: UIBarButtonItem) {
         self.sideMenu.fadeIn()
+    }
+    
+    func switchMask(isOn: Bool) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.viewMask.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: (isOn ? 0.2 : 0))
+        })
     }
     
 }

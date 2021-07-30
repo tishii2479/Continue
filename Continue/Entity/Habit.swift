@@ -19,6 +19,9 @@ extension Habit {
     static var name: String {
         return "Habit"
     }
+    static var currentHabit: Habit? {
+        return getHabitFromId(id: RecordData.currentHabitId)
+    }
     
     static func addData(habitName: String) {
         var habitArray = getDataArray()
@@ -46,8 +49,28 @@ extension Habit {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
-    static func deleteData(data: Habit) {
+    static func deleteData(data _data: Habit?) {
+        guard let data = _data else {
+            print("ERROR")
+            return
+        }
+        
         context?.delete(data)
+        
+        // Delete recordData which is a data of this habit
+        let recordArray = RecordData.getDataArray()
+        
+        for record in recordArray {
+            if record.habitID == data.id {
+                context?.delete(record)
+            }
+        }
+        
+        // Set random habit to new current habit
+        let habitArray = getDataArray()
+        var nextHabit: String?
+        if habitArray.count > 0 { nextHabit = habitArray[0].id }
+        UserDefaults.standard.setValue(nextHabit, forKey: RecordData.currentHabitKey)
         
         self.save()
     }

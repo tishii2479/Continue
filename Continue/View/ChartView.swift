@@ -25,11 +25,11 @@ class ChartView: CardView {
         
         self.chartView.xAxis.labelPosition = .bottom
         self.chartView.xAxis.drawAxisLineEnabled = false
-        self.chartView.xAxis.setLabelCount(7, force: true)
+        self.chartView.xAxis.drawGridLinesEnabled = false
         self.chartView.xAxis.granularity = 1
         
         self.chartView.leftAxis.axisMinimum = 0
-        self.chartView.leftAxis.enabled = false
+        self.chartView.leftAxis.drawAxisLineEnabled = false
         self.chartView.rightAxis.enabled = false
         
         self.chartView.highlightPerTapEnabled = false
@@ -37,6 +37,8 @@ class ChartView: CardView {
         self.chartView.doubleTapToZoomEnabled = false
         self.chartView.pinchZoomEnabled = false
         self.chartView.legend.enabled = false
+        self.chartView.noDataText = "データがありません"
+        self.chartView.noDataTextColor = UIColor.text
         
         self.addSubview(self.chartView)
         
@@ -85,6 +87,8 @@ class ChartView: CardView {
         
         // set x axis 0-index value
         self.chartView.xAxis.valueFormatter = ChartXAxisFormatter(startDate: recordData[0].date!)
+
+        self.chartView.xAxis.setLabelCount(min(7, recordData.count), force: true)
         
         self.chartView.animate(xAxisDuration: 1)
     }

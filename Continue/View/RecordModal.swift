@@ -10,11 +10,11 @@ import UIKit
 class RecordModal: UIView {
     
     weak var delegate: DataProtocol?
-    var editingData: RecordData?
-    let recordForm = RecordForm()
-    let addButton = RoundButton(title: "記録する")
-    let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
-    let blackMask = UIView()
+    private var editingData: RecordData?
+    private let recordForm = RecordForm()
+    private let addButton = RoundButton(title: "記録する")
+    private let closeButton = IconButton(systemName: "multiply", cornerRadius: 15)
+    private let blackMask = UIView()
 
     init() {
         super.init(frame: UIScreen.main.bounds)

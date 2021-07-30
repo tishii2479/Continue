@@ -10,7 +10,7 @@ import Charts
 
 class ChartView: CardView {
     
-    let chartView = LineChartView()
+    private let chartView = LineChartView()
 
     override init() {
         super.init()

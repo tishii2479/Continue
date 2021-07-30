@@ -9,13 +9,13 @@ import UIKit
 
 class RecordForm: CardView {
     
-    let stackView = UIStackView()
-    let titleLabel = TextLabel()
-    let dateImage = UIImageView()
-    let datePicker = UIDatePicker()
-    let dateField = UITextField()
-    let recordImage = UIImageView()
-    let recordField = UITextField()
+    private let stackView = UIStackView()
+    private let titleLabel = TextLabel()
+    private let dateImage = UIImageView()
+    private let datePicker = UIDatePicker()
+    private let dateField = UITextField()
+    private let recordImage = UIImageView()
+    private let recordField = UITextField()
 
     override init() {
         super.init()

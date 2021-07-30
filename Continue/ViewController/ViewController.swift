@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     var sideMenu = SideMenu()
     let titleField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-    let viewMask = UIView()
+    private let viewMask = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     
     func setNavigationTitleText(title: String?) {
         if title == nil {
-            self.titleField.text = ""
+            self.titleField.text = "未設定"
             return
         }
         self.titleField.text = title

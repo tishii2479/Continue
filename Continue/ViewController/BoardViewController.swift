@@ -10,12 +10,12 @@ import CoreData
 
 class BoardViewController: ViewController, DataProtocol {
     
-    let scrollView = UIScrollView()
-    let stackView = UIStackView()
-    let recordModal = RecordModal()
-    let chartView = ChartView()
-    let tableView = TableView()
-    let addButton = RoundButton(title: "記録する")
+    private let scrollView = UIScrollView()
+    private let stackView = UIStackView()
+    private let recordModal = RecordModal()
+    private let chartView = ChartView()
+    private let tableView = TableView()
+    private let addButton = RoundButton(title: "記録する")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,7 @@ class BoardViewController: ViewController, DataProtocol {
         super.setNavigationBar()
         
         self.titleField.textAlignment = .center
+        self.titleField.textColor = UIColor.text
         self.titleField.font = UIFont.boldSystemFont(ofSize: 16)
         self.titleField.addTarget(self, action: #selector(startEditingTitleField(_:)), for: .editingDidBegin)
         
@@ -140,15 +141,14 @@ class BoardViewController: ViewController, DataProtocol {
     }
 
     func openNewHabit(isFirstLoad: Bool) {
-        let animated = !isFirstLoad
         let habitVC = CreateHabitViewController(isFirstLoad: isFirstLoad)
         habitVC.modalPresentationStyle = .fullScreen
-        self.present(habitVC, animated: animated, completion: nil)
+        self.present(habitVC, animated: true, completion: nil)
     }
     
     private func checkFirstLoad() {
         if RecordData.currentHabitId == nil {
-            openNewHabit(isFirstLoad: true)
+            self.openNewHabit(isFirstLoad: true)
         }
     }
     
@@ -186,6 +186,7 @@ class BoardViewController: ViewController, DataProtocol {
             (action: UIAlertAction!) in
             Habit.deleteData(data: Habit.currentHabit)
             
+            self.checkFirstLoad()
             self.reloadData()
         })
 

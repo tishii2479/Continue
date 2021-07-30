@@ -12,8 +12,8 @@ class MenuContent: UIView {
     weak var sideMenu: SideMenu?
     weak var delegate: DataProtocol?
     private var habits = Habit.getDataArray()
-    let stackView = UIStackView()
-    let tableView = UITableView()
+    private let stackView = UIStackView()
+    private let tableView = UITableView()
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 250, height: UIScreen.main.bounds.height))
@@ -117,8 +117,8 @@ class SideMenu: UIView {
         }
     }
     
-    let blackMask = UIView()
-    let menu = MenuContent()
+    private let blackMask = UIView()
+    private let menu = MenuContent()
     
     init() {
         super.init(frame: UIScreen.main.bounds)

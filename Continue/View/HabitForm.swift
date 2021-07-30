@@ -9,10 +9,10 @@ import UIKit
 
 class HabitForm: CardView {
     
-    let stackView = UIStackView()
-    let titleLabel = TextLabel()
-    let nameImage = UIImageView()
-    let nameField = UITextField()
+    private let stackView = UIStackView()
+    private let titleLabel = TextLabel()
+    private let nameImage = UIImageView()
+    private let nameField = UITextField()
 
     override init() {
         super.init()

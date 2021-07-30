@@ -10,14 +10,14 @@ import UIKit
 class TableCell: UITableViewCell {
     
     weak var delegate: DataProtocol?
-    let stackView = UIStackView()
-    let dateText = TextLabel()
-    let recordText = TextLabel()
-    let badgeImage = UIImageView()
-    let editButton = IconButton(systemName: "pencil", cornerRadius: 15)
-    let deleteButton = IconButton(systemName: "multiply", cornerRadius: 15)
+    private let stackView = UIStackView()
+    private let dateText = TextLabel()
+    private let recordText = TextLabel()
+    private let badgeImage = UIImageView()
+    private let editButton = IconButton(systemName: "pencil", cornerRadius: 15)
+    private let deleteButton = IconButton(systemName: "multiply", cornerRadius: 15)
     
-    var data: RecordData?
+    private var data: RecordData?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -114,29 +114,38 @@ class TableCell: UITableViewCell {
 class TableView: CardView {
     
     weak var delegate: DataProtocol?
-    let tableView = UITableView()
-    var records: [RecordData]!
+    private let tableView = UITableView()
+    private let noDataLabel = TextLabel()
+    private var records: [RecordData]!
 
     override init() {
         super.init()
         
-        records = RecordData.getDataArray()
-        
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(tableView)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.back
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.separatorStyle = .none
+        self.addSubview(tableView)
+        
+        self.noDataLabel.textAlignment = .center
+        self.noDataLabel.font = UIFont.systemFont(ofSize: 12)
+        self.addSubview(noDataLabel)
         
         NSLayoutConstraint.activate([
             self.tableView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 30),
             self.tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30),
             self.tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            self.noDataLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.noDataLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 100),
+            self.noDataLabel.widthAnchor.constraint(equalToConstant: 200),
+            self.noDataLabel.heightAnchor.constraint(equalToConstant: 200),
         ])
+        
+        self.reloadData()
     }
 
     required init?(coder: NSCoder) {
@@ -144,8 +153,14 @@ class TableView: CardView {
     }
     
     func reloadData() {
-        records = RecordData.getDataArray()
-        tableView.reloadData()
+        self.records = RecordData.getDataArray()
+        self.tableView.reloadData()
+        
+        if self.records.count == 0 {
+            self.noDataLabel.text = "データがありません"
+        } else {
+            self.noDataLabel.text = ""
+        }
     }
     
 }

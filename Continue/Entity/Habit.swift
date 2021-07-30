@@ -75,6 +75,11 @@ extension Habit {
         self.save()
     }
     
+    static func editCurrentHabitName(newName: String) {
+        currentHabit?.name = newName
+        self.save()
+    }
+    
     static func getHabitFromId(id: String?) -> Habit? {
         if id == nil { return nil }
         

@@ -76,14 +76,11 @@ class CreateHabitViewController: ViewController {
     
     @objc func addNewHabit(_ sender: UIButton) {
         let name = self.habitForm.getInput()
-        guard let _name = name else {
-            // TODO:
-            // tell user an error
-            print("NO_INPUT")
-            return
-        }
         
-        Habit.addData(habitName: _name)
+        // TODO: show error
+        if name == "" { return }
+        
+        Habit.addData(habitName: name)
         
         self.dismiss(animated: true, completion: nil)
     }

@@ -76,8 +76,8 @@ class HabitForm: CardView {
         self.nameField.text = ""
     }
     
-    func getInput() -> String? {
-        return self.nameField.text
+    func getInput() -> String {
+        return self.nameField.text ?? ""
     }
 
 }

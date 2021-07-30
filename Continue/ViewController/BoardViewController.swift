@@ -153,10 +153,15 @@ class BoardViewController: ViewController, DataProtocol {
     }
     
     @objc func endEditingTitleField(_ sender: UIBarButtonItem) {
-        // TODO: check nil
+        guard let title = self.titleField.text else { return }
+        if title == "" { return }
+        
+        Habit.editCurrentHabitName(newName: title)
         
         self.titleField.endEditing(true)
         self.switchMask(isOn: false)
+        
+        self.sideMenu.reloadData()
     }
     
     @objc func startEditingTitleField(_ sender: UITextField) {

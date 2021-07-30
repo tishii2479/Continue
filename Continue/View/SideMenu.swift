@@ -39,13 +39,18 @@ class MenuContent: UIView {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.backgroundColor = UIColor.back
+        self.stackView.addArrangedSubview(self.tableView)
+        
         // FIXME:
         // constraint error
         // without this line, the table width will be zero
-        self.tableView.widthAnchor.constraint(equalToConstant: self.bounds.width - 40).isActive = true
-        self.tableView.separatorStyle = .none
-        self.tableView.backgroundColor = UIColor.back
-        self.stackView.addArrangedSubview(self.tableView)
+        NSLayoutConstraint.activate([
+            self.tableView.leftAnchor.constraint(equalTo: self.stackView.leftAnchor, constant: 20),
+            self.tableView.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: -20),
+        ])
         
         let newButton = UIButton()
         newButton.setTitle("新規作成", for: .normal)
@@ -59,7 +64,7 @@ class MenuContent: UIView {
     }
     
     @objc func newButtonTapped(_ sender: UIButton) {
-        self.delegate?.openNewHabit(isFirstLoad: true)
+        self.delegate?.openNewHabit(isFirstLoad: false)
     }
     
     func reloadData() {

@@ -11,11 +11,13 @@ import CoreData
 //
 // ISSUE:
 // this extension is almost the same with Habit.swift
-// it is necessary to integrate two extensions in one
+// it is necessary to integrate two extensions into one
 //
 extension RecordData {
     
-    static let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    static var context: NSManagedObjectContext? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+    }
 
     static var currentHabitKey: String {
         return "CurrentHabit"

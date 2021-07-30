@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     }
 
     private func setBackgroundColor() {
+        /*
         let gradientColors: [CGColor] = [UIColor.pink.cgColor, UIColor.lightBlue.cgColor]
 
         let gradientLayer: CAGradientLayer = CAGradientLayer()
@@ -29,8 +30,10 @@ class ViewController: UIViewController {
         gradientLayer.frame = self.view.bounds
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        
+
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+        */
+        self.view.backgroundColor = UIColor.lightGray
     }
     
     func setNavigationBar() {

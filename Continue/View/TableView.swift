@@ -21,14 +21,16 @@ class TableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+    }
+    
+    override func draw(_ rect: CGRect) {
         self.contentView.backgroundColor = .clear
         self.backgroundColor = .clear
         self.selectionStyle = .none
         
         // FIXME:
         // using ad-hoc solution to fit the size of the cell
-        self.stackView.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 50, height: self.bounds.height)
+        self.stackView.frame = CGRect(x: 10, y: 0, width: self.contentView.bounds.width - 20, height: self.bounds.height)
         self.stackView.axis = .horizontal
         self.stackView.alignment = .center
         self.stackView.distribution = .fill

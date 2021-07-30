@@ -11,7 +11,7 @@ import CoreData
 //
 // ISSUE:
 // this extension is almost the same with RecordData.swift
-// it is necessary to integrate two extensions in one
+// it is necessary to integrate two extensions into one
 //
 extension Habit {
     

@@ -91,7 +91,7 @@ class BoardViewController: ViewController, DataProtocol {
             self.stackView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 20),
             self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -20),
             self.stackView.widthAnchor.constraint(equalToConstant: self.view.bounds.width - 40),
-            self.stackView.heightAnchor.constraint(equalToConstant: 800),
+            self.stackView.heightAnchor.constraint(equalToConstant: self.view.bounds.height * 3 / 2),
             // constraints for cards
             self.chartView.leftAnchor.constraint(equalTo: self.stackView.leftAnchor, constant: 0),
             self.chartView.rightAnchor.constraint(equalTo: self.stackView.rightAnchor, constant: 0),

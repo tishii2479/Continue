@@ -29,6 +29,7 @@ class ChartView: CardView {
         self.chartView.xAxis.granularity = 1
         
         self.chartView.leftAxis.axisMinimum = 0
+        self.chartView.leftAxis.granularity = 1
         self.chartView.leftAxis.drawAxisLineEnabled = false
         self.chartView.rightAxis.enabled = false
         

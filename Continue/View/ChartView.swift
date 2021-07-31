@@ -61,7 +61,7 @@ class ChartView: CardView {
         // No data
         if recordData.count == 0 {
             self.chartView.data = nil
-            self.chartView.animate(xAxisDuration: 1)
+            self.chartView.animate(xAxisDuration: 0)
             return
         }
         
@@ -91,7 +91,7 @@ class ChartView: CardView {
 
         self.chartView.xAxis.setLabelCount(min(7, recordData.count), force: true)
         
-        self.chartView.animate(xAxisDuration: 1)
+        self.chartView.animate(xAxisDuration: 0)
     }
     
     class ChartDataFormatter: NSObject, ValueFormatter {
